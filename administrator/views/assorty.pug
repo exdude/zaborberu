@@ -1,0 +1,37 @@
+extends layout.pug
+block content
+    section.block.gap.col
+        h2 Ассортимент 
+        button.btn.add(data-type='add') Добавить
+        table
+            thead
+                tr
+                    th Имя
+                    th Категория
+                    th Цвет
+                    th Тип
+                    th Размер
+                    th Края
+                    th Планки
+                    th Время
+                    th Цена
+                    th Схема
+                    th Изменить
+                    th Удалить
+            tbody
+                each item in data
+                    tr
+                        th=item.name
+                        th=item.category
+                        th=item.color
+                        th=item.type
+                        th=item.size
+                        th=item.edge
+                        th=item.plank
+                        th=item.time
+                        th=item.count
+                        th=item.scheme
+                        th
+                            button.btn(data-id=item.id, data-type='edit') Изменить 
+                        th
+                            button.btn.delete(data-id=item.id, data-type='delete') Удалить  

@@ -1,0 +1,28 @@
+extends layout.pug
+block content
+    section.block.gap.col
+        h2 Проекты
+        button.btn.add(data-type='add') Добавить
+        table
+            thead
+                tr
+                    th Изображение
+                    th Город
+                    th Цвет
+                    th Длина
+                    th Ширина
+                    th Тип
+                    th Модель
+            tbody
+                each item in data
+                    tr
+                        th=item.img
+                        th=item.loc
+                        th=item.height
+                        th=item.width
+                        th=item.type
+                        th=item.model
+                        th
+                            button.btn(data-id=item.id, data-type='edit') Изменить 
+                        th
+                            button.btn.delete(data-id=item.id, data-type='delete') Удалить  

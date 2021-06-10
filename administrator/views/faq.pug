@@ -1,0 +1,21 @@
+extends layout.pug
+block content
+    section.block.gap.col
+        h2 Вопросы и ответы
+        button.btn.add(data-type='add') Добавить
+        table
+            thead
+                tr
+                    th Номер
+                    th Вопрос
+                    th Ответ
+            tbody
+                each item in data
+                    tr
+                        th=item.id
+                        th=item.question
+                        th=item.answer
+                        th
+                            button.btn(data-id=item.id, data-type='edit') Изменить 
+                        th
+                            button.btn.delete(data-id=item.id, data-type='delete') Удалить  

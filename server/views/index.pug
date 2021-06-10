@@ -1,0 +1,190 @@
+extends layout.pug
+block content
+    - var title = isSht ? 'Металлический штакетник' : 'Еврожалюзи "Royal"'
+    - var main_slider = isSht ? 'main' : 'eu'
+    - var slider = isSht ? 'main' : 'eu'
+    - var assorty = isSht ? data.assorty : data.assorty_eu
+    - var projects = isSht ? data.projects : data.projects_eu
+    - var count = isSht ? data.count : data.count_eu
+
+    
+    section.main
+        .main.contain
+            img(src="/assets/img/grass.png", class="grass")
+            .location
+                p Ваш город: 
+                    span=data.city
+                .location-question.gap-m.col
+                    p Ваш города: 
+                        b=data.city
+                    .row
+                        button.yes  Да
+                        button.no  Нет
+            .slider-info
+                div.slider-info__slider
+                    div.card
+                        img(src="/assets/img/slider/" + main_slider + "/1018.png")
+                    div.card
+                        img(src="/assets/img/slider/" + main_slider + "/3005.png")
+                    div.card
+                        img(src="/assets/img/slider/" + main_slider + "/5002.png")
+                    div.card
+                        img(src="/assets/img/slider/" + main_slider + "/5021.png")
+                div.slider-info__info
+                    .slider-info__info-block
+                        h1=title + ' от ' + count + ' руб.'
+                        p с доставкой в <b>г. #{data.city}</b>
+                        p на 15% ниже розничной цены
+                    .slider-info__info-types.gap
+                        .col.gap.boxes
+                            .card.row.gap
+                                img(src="/assets/img/main/guarantee.png")
+                                p Срок службы <b>25 лет</b>
+                            .card.row.gap
+                                img(src="/assets/img/main/carpet.png")
+                                p= isSht ? '5 видов штакетника' : 'Ассортимент цветов'
+                        .col.gap.boxes
+                            .card.row.gap
+                                img(src="/assets/img/main/certificate.png")
+                                p Продукция <b>сертифицирована</b>
+                            .card.row.gap
+                                img(src="/assets/img/main/shipped.png")
+                                b Льготная доставка
+                    .slider-info__info-order.row
+                        .row
+                            img(src="/assets/img/main/dellivery.png")
+                            p Готовы в день оплаты отправить ваш заказ в любой город России
+                        button.btn(data-order="true") ЗАКАЗАТЬ С ДОСТАВКОЙ
+            .grass-bg
+                img(src="/assets/img/grass/1.png", style="margin:10px 0 0 25px; filter: blur(1px)", data-depth="1")
+                img(src="/assets/img/grass/2.png", style="margin:80px 0 0 45px", data-depth="6")
+                img(src="/assets/img/grass/3.png", style="margin:120px 0 0 165px", data-depth="3")
+                img(src="/assets/img/grass/4.png", style="margin:170px 0 0 225px; filter: blur(1px)", data-depth="15")
+                img(src="/assets/img/grass/5.png", style="margin:200px 0 0 405px; filter: blur(2px);", data-depth="9")
+    section.cards
+        .cards.contain
+            h2 АССОРТИМЕНТ
+            .types
+                .types-header
+                    each item in assorty
+                        button(data-btn=item.id class="types-header__btn")= item.name
+                .types-body
+                    img(src="/assets/img/arrow.png").types-btn.next
+                    img(src="/assets/img/arrow.png").types-btn.back
+                    - var assorty_name = isSht ? 'Ширина профиля' : 'Тип профиля'
+                    - var assorty_size = isSht ? 'мм' : ''
+                    each item in assorty
+                        .types-card(data-block=item.id)
+                            .types-card__img
+                                img(src='/assets/img/products/' + (isSht ? item.size : item.type) +'/'+ item.color + '.png')
+                            .types-card__disc
+                                .types-card__disc-head
+                                    span=item.category
+                                    h3=item.type
+                                ul 
+                                    li
+                                        p=assorty_name + ':'
+                                        b=item.size + assorty_size
+                                    li
+                                        p Количество рёбер жесткости:
+                                        span=item.edge
+                                    li
+                                        p Количество планок на пог.метр:
+                                        span=item.plank
+                                    li
+                                        p Срок изготовления:
+                                        span=item.time
+                                    li 
+                                        p Стоимость:
+                                        span от #{item.count} руб. за пог. метр
+                                    li 
+                                        a(data-open="/assets/img/uploads/" + item.scheme) Посмотреть чертёж
+                                .types-card__disc-order
+                                    .row
+                                        img(src="/assets/img/main/dellivery.png")
+                                        p Готовы в день оплаты отправить ваш заказ в любой город России
+                                    button.btn(data-order="true") ЗАКАЗАТЬ С ДОСТАВКОЙ            
+    section.work
+        .work.contain
+            h2 КАК МЫ РАБОТАЕМ
+            .row.block
+                .col.info
+                    ul 
+                        li.row
+                            img(src="/assets/img/icons/del.png", alt="")
+                            .col 
+                                b Доставка в Ваш населенный пункт
+                                p Благодаря большим объёмам - у нас специальные цены от транспортных компаний на доставку, которые намного дешевле, если бы Вы заказывали доставку самостоятельно.
+                        li.row
+                            img(src="/assets/img/icons/time.png", alt="")
+                            .col 
+                                b Отправка товара - в день заказа
+                                p Мы отправляем заказы по всей России ежедневно, кроме выходных дней. Мы заботимся о Вашем удобстве, и поэтому, после оформления заказа мы обязательно уточним для Вас ближайший день доставки.
+                        li.row
+                            img(src="/assets/img/icons/mon.png", alt="")
+                            .col 
+                                b Оплата - при получении
+                                p Предварительно  Вы оплачиваете лишь 15% от стоимости заказа. Остальную часть можно оплатить  непосредственно при получении товара, предварительно оценив качество штакетника. Мы ручаемся за качество!
+                        li.row
+                            img(src="/assets/img/icons/card.png", alt="")
+                            .col 
+                                b Удобная форма расчета
+                                p За привезенный заказ вы можете рассчитаться он-лайн с помощью банковской карты или перевести деньги на наш расчётный счет. 
+                    button.btn(data-messenger="true") ПОЛУЧИТЬ ПРАЙС НА МЕССЕНДЖЕР
+                img(src="/assets/img/phone.png")
+    section.projects
+        .projects.contain
+            h2 РЕАЛЬНЫЕ ПРИМЕРЫ ПРОЕКТОВ
+            .slider
+                .row.btns
+                    button.back
+                        img(src="/assets/img/arrow.png")
+                    button.next
+                        img(src="/assets/img/arrow.png")
+                .slider-body
+                    each item in projects
+                        .slide(style="background: url('/assets/img/uploads/" + item.img + "') no-repeat; background-size: cover;")
+                            .slide-info
+                                ul
+                                    li
+                                        p Место установки:
+                                        span=item.loc
+                                    li
+                                        p Цвет:
+                                        span=item.color
+                                    li
+                                        p Высота:
+                                        span=item.width+' м'
+                                    li
+                                        p Длина секции:
+                                        span=item.height+' м'
+                                    li
+                                        p Вариант заполнения секции:
+                                        span=item.type
+                                    li
+                                        p Тип профиля:
+                                        span=item.model
+    section.faq
+        .faq.contain
+            .grass.first
+                img(src="/assets/img/grass/1.png", style="margin:10px 0 0 25px; filter: blur(1px)", data-depth="1")
+                img(src="/assets/img/grass/2.png", style="margin:80px 0 0 45px", data-depth="6")
+                img(src="/assets/img/grass/3.png", style="margin:120px 0 0 165px", data-depth="3")
+                img(src="/assets/img/grass/4.png", style="margin:170px 0 0 225px; filter: blur(1px)", data-depth="15")
+                img(src="/assets/img/grass/5.png", style="margin:200px 0 0 405px; filter: blur(2px);", data-depth="9")
+            .grass.second
+                img(src="/assets/img/grass/1.png", style="margin:10px 0 0 25px; filter: blur(1px)", data-depth="1")
+                img(src="/assets/img/grass/2.png", style="margin:80px 0 0 45px", data-depth="6")
+                img(src="/assets/img/grass/3.png", style="margin:120px 0 0 165px", data-depth="3")
+                img(src="/assets/img/grass/4.png", style="margin:170px 0 0 225px; filter: blur(1px)", data-depth="15")
+                img(src="/assets/img/grass/5.png", style="margin:200px 0 0 405px; filter: blur(2px);", data-depth="9")
+            .faq-attribute 
+                img(src="/assets/img/grass/full-lil.png")
+                img(src="/assets/img/grass/full-b.png")
+            h2 ВОПРОСЫ И ОТВЕТЫ
+            .faq-qaa
+                each item in data.faq
+                    button(type="button" class="collapsible")=item.question
+                    .content
+                        pre=item.answer
+    section#map

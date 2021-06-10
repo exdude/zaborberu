@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /404
+Disallow: /agreement
+Disallow: /thanks
+Host: zaborberu.ru
+Sitemap: http://zaborberu.ru/sitemap.xml

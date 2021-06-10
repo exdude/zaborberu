@@ -1,0 +1,19 @@
+extends layout.pug
+block content
+    section.about
+        .contain.row.gap
+            .about-info.col.gap
+                .col.block
+                    b О компании:
+                    p=about.about
+                .col.block
+                    b Тел, ватсап, вайбер: 
+                    .col.gap-m
+                        a(href="tel:" + about.messengers).link=about.messengers
+                        a(href="mailto:" + about.mail).link=about.mail
+                .col.block
+                    b Мы в соцсетях:
+                    .col.gap-m
+                        a(href=about.vk).link Мы Вконтакте
+                        a(href=about.inst).link Мы в Инстаграмм
+            #map

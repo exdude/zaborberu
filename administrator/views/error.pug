@@ -1,0 +1,16 @@
+extends layout.pug
+block content
+    h1=title
+    a(href="tel:+79876024689").link Позвонить Ринату
+    br
+    br
+    .error
+        b Ошибка сервера:
+        br
+        br
+        .code
+            pre=error ? error : 'Not found errors'
+        br
+        br
+        a(href=link ? link : '/').btn Попробовать снова
+    br

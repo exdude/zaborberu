@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+html(lang="ru")
+    include ./partials/head.pug
+    body
+        header
+            include ./partials/navbar.pug
+        div.page.row
+            div.page-menu
+                include ./partials/leftmenu.pug
+            div.page-body
+                block content
+        footer
+            include ./partials/footer.pug

@@ -1,0 +1,12 @@
+html(lang="en")
+    include ./partials/head.pug
+    body
+        header.header
+            include ./partials/navbar.pug
+        #main
+            block content
+        footer
+            include ./partials/footer.pug
+        if !isPay
+            //- script(src="https://api-maps.yandex.ru/2.1/?apikey=eb23da10-3ef2-4375-85b8-c4cf334e4707&lang=ru_RU")
+            //- script(src="/assets/js/map.js") 

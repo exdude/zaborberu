@@ -1,0 +1,31 @@
+ul
+    a(href="/") 
+        if index
+            li.active <i class="fas fa-home"></i> Главная
+        else
+            li <i class="fas fa-home"></i> Главная
+    a(href="/assorty") 
+        if assorty
+            li.active <i class="fas fa-border-none"></i> Ассорти
+        else 
+            li <i class="fas fa-border-none"></i> Ассорти
+    a(href="/assortyeu")
+        if assortyeu
+            li.active <i class="fas fa-border-none"></i> Ассорти Евро
+        else 
+            li <i class="fas fa-border-none"></i> Ассорти Евро
+    a(href="/projects")
+        if projects
+            li.active <i class="fas fa-project-diagram"></i> Проекты
+        else 
+            li <i class="fas fa-project-diagram"></i> Проекты
+    a(href="/projectseu")
+        if projectseu
+            li.active <i class="fas fa-project-diagram"></i> Проекты Евро
+        else 
+            li <i class="fas fa-project-diagram"></i> Проекты Евро
+    a(href="/faq")
+        if faq
+            li.active <i class="far fa-question-circle"></i> Вопросы/ответы
+        else 
+            li <i class="far fa-question-circle"></i> Вопросы/ответы

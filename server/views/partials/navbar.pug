@@ -1,0 +1,38 @@
+.header-info
+    p Продажа металлического штакетника с доставкой по всей России и странам Таможенного Союза
+.header-content
+    a(href="/")
+        img(src="/assets/img/logo.png", alt=title)
+    .content-phones.gap
+        .row.mid.gap-m
+            i(class="fas fa-phone-alt")
+            a(href="tel:"+messengers)=messengers
+    a.link.mob-menu Меню
+    nav(class="main-menu")
+        ul
+            if isSht
+                a.active(href="/")
+                    li Штакетник
+            else
+                a(href="/")
+                    li Штакетник
+            if isEu
+                a.active(href="/eu")
+                    li Забор-жалюзи
+            else
+                a(href="/eu")
+                    li Забор-жалюзи
+            if isAbout
+                a.active(href="/about")
+                    li О компании
+            else
+                a(href="/about")
+                    li О компании
+            if isPay
+                a.active(href="pay")
+                    li Оплата
+            else 
+                a(href="pay")
+                    li Оплата
+    //- .content-sberpay
+    //-     img(src="/assets/img/pay.png", alt="Оплата сбербанк онлайн")
