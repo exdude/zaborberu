@@ -146,7 +146,7 @@ class SberBank {
             })
         })
         .then(status => status.json())
-        .then(status => status)
+        console.log(result);
         return result
     }
 

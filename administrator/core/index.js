@@ -1,6 +1,14 @@
 require('dotenv').config()
+require('../module/ferma')
+
+
 const PORT = process.env.PORT || 3000
 const multer = require('../config/multer/index')
+
+
+
+
+
 class Core {
     constructor(opt) {
         this.app = opt.app

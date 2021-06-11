@@ -90,8 +90,8 @@ function init() {
 
 function getStatus(Status = 'suc', d, type) {
     const div = document.createElement('DIV')
-    if (type === 'QR') div.innerHTML = 'Нажмите кнопку оплатить снова!' //d.error.moreInformation
-    if (type === 'CVV') div.innerHTML =d.result.errorMessage
+    if (type === 'QR') div.innerHTML = d.error.moreInformation
+    if (type === 'CVV') div.innerHTML = d.result.errorMessage
 
     if (Status === 'err') div.classList.add('error')
     if (Status === 'suc') div.classList.add('success')
@@ -102,6 +102,9 @@ function getStatus(Status = 'suc', d, type) {
     div.style.animation = '1s showStatus forwards'
     setTimeout(() => {
         div.style.animation = '1s hideStatus forwards'
+        setTimeout(() => {
+            div.remove()
+        }, 1000)
     }, 3000)
     document.body.append(div)
 }

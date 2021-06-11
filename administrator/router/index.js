@@ -8,6 +8,7 @@ rout.get('/assortyeu', controller.assortyeu)
 rout.get('/projects', controller.projects)
 rout.get('/projectseu', controller.projectseu)
 rout.get('/faq', controller.faq)
+rout.get('/payments', controller.payments)
 rout.get('/error', controller.error)
 rout.post('/api', controller.api)
 

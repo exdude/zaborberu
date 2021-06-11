@@ -1,0 +1,39 @@
+extends layout.pug
+block content
+    section.block.gap.col
+        h2 Оплата QR-code
+        table
+            thead
+                tr
+                    th Номер
+                    th Номер заказа (руч)
+                    th Номер заказа (ген)
+                    th Цена
+                    th ФИО
+                    th Почта
+                    th Телефон
+                    th Город доставки
+                    th Дата
+                    th Тип оплаты
+                    th Статус
+                    th Фиксализация
+            tbody
+                each item in data
+                    tr
+                        th=item.id
+                        th=item.customOrderNumber
+                        th=item.orderNumber
+                        th=item.count
+                        th=item.lastName
+                        th=item.email
+                        th=item.phone
+                        th=item.delivery
+                        th=item.date
+                        th=item.type
+                        th=item.status
+                        th=item.FZ
+                        th=item.FZ_ID
+                        th
+                            button.btn(data-id=item.id, data-type='edit') Изменить 
+                        th
+                            button.btn.delete(data-id=item.id, data-type='delete') Удалить  

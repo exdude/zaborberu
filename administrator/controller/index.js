@@ -4,6 +4,7 @@ const AssortyEu = db.assortyeu
 const Projects = db.Projects
 const ProjectsEu = db.ProjectsEu
 const Faq = db.Faq
+const Payments = db.Payments
 
 class Controllers {
     index(req, res, next) {
@@ -45,6 +46,13 @@ class Controllers {
             title: 'Панель администратора вопросы и ответы',
             data: await Faq.findAll().then(result => result),
             faq: true
+        })
+    }
+    async payments(req, res, next) {
+        res.render('payments', {
+            title: 'Панель администратора оплата QR-code',
+            data: await Payments.findAll().then(result => result),
+            Payments: true
         })
     }
     async error(req, res, next) {

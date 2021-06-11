@@ -1,9 +1,12 @@
 require('dotenv').config()
 
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize(process.env.MYSQL_HOST, process.env.MYSQL_USER, process.env.MYSQL_PASS, {
+const sequelize = new Sequelize(
+    process.env.MYSQL_DB,
+    process.env.MYSQL_USER,
+    process.env.MYSQL_PASS, {
     dialect: 'mysql',
-    host: process.env.MYSQL_DB
+    host: process.env.MYSQL_HOST
 })
 
 const Assorty = require('./models/Assorty')(sequelize)
@@ -11,6 +14,7 @@ const AssortyEu = require('./models/AssortyEu')(sequelize)
 const Projects = require('./models/Projects')(sequelize)
 const ProjectsEu = require('./models/ProjectsEu')(sequelize)
 const Faq = require('./models/Faq')(sequelize)
+const Payments = require('./models/Payments')(sequelize)
 
 module.exports = {
     sequelize : sequelize,
@@ -18,5 +22,6 @@ module.exports = {
     assortyeu: AssortyEu,
     Projects: Projects,
     ProjectsEu: ProjectsEu,
+    Payments: Payments,
     Faq: Faq
 }
