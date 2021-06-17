@@ -113,9 +113,21 @@ class SberStatus {
 
     CHECK_FIKSALIZATION(FZDATA) {
         //ПРОВЕРКА СТАТУСА ПЛАТЕЖА ДЛЯ ФИКСАЛИЗАЦИИ
+        // (function(i) {
+        //     let x = 0
+        //     const intervalId = setInterval(() => {
+        //         x++
+        //         if (FZDATA[x].dataValues.status === 'Оплачен') {
+        //             if (FZDATA[x].dataValues.fz === 'Оплачен') {
+        //                 this.DO_FIKSALIZATION(xy.dataValues) 
+        //             }
+        //         }
+        //         if (i === x) clearInterval(intervalId)
+        //     }, 1000)
+        // })(FZDATA.length)
         FZDATA.forEach(xy => {
             if (xy.dataValues.status === 'Оплачен') {
-                if (!xy.fz) {
+                if (!xy.dataValues.FZ) {
                     this.DO_FIKSALIZATION(xy.dataValues) 
                 }
             }
@@ -225,6 +237,6 @@ setInterval(async () => {
     const ALL_PAYMENTS = await Payments.findAll({where: {type: 'QR'}})
     new SberStatus(ALL_PAYMENTS).qrStatus()
     new SberStatus().CHECK_FIKSALIZATION(ALL_PAYMENTS)
-}, 10000)
+}, 10000 * 60 * 5)
 
 module.exports = SberStatus
