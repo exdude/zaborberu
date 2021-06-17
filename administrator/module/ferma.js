@@ -194,18 +194,25 @@ class SberStatus {
                     //ОБНОВЛЕНИЕ ДАННЫХ О ФИКСАЛИЗАЦИИ ПЛАТЕЖА В ПАНЕЛИ АДМИНИСТРАТОРА
                     if (x.Status) {
                         const ID = options.id
-                        const ANSWER = x.Status == 'Success' ? 'Фиксализирован' : 'Ошибка'
-                        const ANSWER_ID = x.Data.ReceiptId ? x.Data.ReceiptId : 'ID транзакции нет'
-                        await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
-                        sendMail('Оплачен и фиксалезирован с помощью QR-кода', {
-                            "Ручной номер заказа": options.customOrderNumber,
-                            "Сгенерированный номер заказа": options.orderNumber,
-                            "Сумма": options.count,
-                            "ФИО": options.lastName,
-                            "Почта": options.email,
-                            "Телефон": options.phone,
-                            "Время": new Date
-                        })
+                        if (x.Status == 'Success') {
+                            const ANSWER = 'Фиксализирован'
+                            console.log(x);
+                            const ANSWER_ID = x.Data.ReceiptId ? x.Data.ReceiptId : 'ID транзакции нет'
+                            await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
+                            sendMail('Оплачен и фиксалезирован с помощью QR-кода', {
+                                "Ручной номер заказа": options.customOrderNumber,
+                                "Сгенерированный номер заказа": options.orderNumber,
+                                "Сумма": options.count,
+                                "ФИО": options.lastName,
+                                "Почта": options.email,
+                                "Телефон": options.phone,
+                                "Время": new Date
+                            })
+                        } else {
+                            const ANSWER = 'Ошибка'
+                            const ANSWER_ID = 'ID транзакции нет'
+                            await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
+                        }
                     }
                 })
             })
