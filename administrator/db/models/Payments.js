@@ -64,8 +64,20 @@ module.exports = function (sequelize) {
             type: Sequelize.STRING,
             allowNull: true
         },
+        rq_uid: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
         FZ_ID: {
             type: Sequelize.STRING,
+            allowNull: true
+        },
+        countpayment: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        },
+        rq_tm: {
+            type: Sequelize.INTEGER,
             allowNull: true
         }
     }, {

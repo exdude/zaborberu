@@ -43,27 +43,35 @@ class SberBank {
             "Время": (moment().format('YYYY-MM-DDTHH:MM:SS'))+'Z'
         })
 
-        payments.create({
-            customOrderNumber: this.adventure.customNumber,
-            orderNumber: this.data.orderNumber,
-            count: this.data.amount / 100,
-            lastName: this.data.description,
-            email: this.data.email,
-            phone: this.data.phone,
-            delivery: this.adventure.address,
-            date: (moment().format('YYYY-MM-DDTHH:MM:SS'))+'Z',
-            orderId: result.orderId ? result.orderId : null,
-            qrOrderId: result.order_id ? result.order_id : null,
-            url: result.formUrl ? result.formUrl : result.order_form_url,
-            type: this.type
-        })
-        .then(res => {
-            console.log(`Payment sended into DB and Mail`)
-        })
-        .catch(err => {
-            console.log(`Error db insert:`)
-            console.log(err)
-        })
+        if (this.type === 'QR') {
+            const data = {
+                customOrderNumber: this.adventure.customNumber,
+                orderNumber: this.data.orderNumber,
+                count: this.data.amount / 100,
+                lastName: this.data.description,
+                email: this.data.email,
+                phone: this.data.phone,
+                delivery: this.adventure.address,
+                date: (moment().format('YYYY-MM-DDTHH:MM:SS'))+'Z',
+                orderId: result.orderId ? result.orderId : null,
+                qrOrderId: result.order_id ? result.order_id : null,
+                rq_uid: result.rq_uid ? result.rq_uid : null,
+                url: result.formUrl ? result.formUrl : result.order_form_url,
+                status: result.order_state === "CREATED" ? "Создан" : "",
+                type: this.type,
+                rq_tm: result.rq_tm
+            }
+    
+            payments.create(data)
+            .then(res => {
+                console.log(`Payment sended into DB and Mail`)
+            })
+            .catch(err => {
+                console.log(`Error db insert:`)
+                console.log(err)
+            })
+        }
+        
     }
 
     async cvvPayment() {
@@ -98,7 +106,7 @@ class SberBank {
                     error: pay
                 }
             } else {
-                this.sendDataBaseAndMail(pay, 'Оплата с помощью QR-кода')
+                this.sendDataBaseAndMail(pay.status, 'Оплата с помощью QR-кода')
                 return {
                     status: 'Success',
                     result: pay
