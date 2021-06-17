@@ -210,7 +210,7 @@ class SberStatus {
                             })
                         } else {
                             const ANSWER = 'Ошибка'
-                            const ANSWER_ID = 'ID транзакции нет'
+                            const ANSWER_ID = 'ID not found'
                             await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
                         }
                     }
