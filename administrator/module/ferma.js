@@ -50,6 +50,7 @@ class SberStatus {
     }
 
      async getStatus(opt, x) {
+         console.log(x);
         //ПОЛУЧЕНИЕ СТАТУСА ПЛАТЕЖА
         const result = await fetch(process.env.QR_STATUS, {
             method: 'POST',
@@ -192,10 +193,10 @@ class SberStatus {
                     if (x.Status) {
                         const ID = options.id
                         if (x.Status == 'Success') {
-                            const ANSWER = 'Фиксализирован'
+                            const ANSWER = 'Фискализирован'
                             const ANSWER_ID = x.Data.ReceiptId ? x.Data.ReceiptId : 'ID транзакции нет'
                             await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
-                            sendMail('Оплачен и фиксалезирован с помощью QR-кода', {
+                            sendMail('Оплачен и Фискализирован с помощью QR-кода', {
                                 "Ручной номер заказа": options.customOrderNumber,
                                 "Сгенерированный номер заказа": options.orderNumber,
                                 "Сумма": options.count,
@@ -221,7 +222,6 @@ setInterval(async () => {
     const ALL_PAYMENTS = await Payments.findAll({where: {type: 'QR'}})
     new SberStatus(ALL_PAYMENTS).qrStatus()
     new SberStatus().CHECK_FIKSALIZATION(ALL_PAYMENTS)
-    console.log('Фиксализация');
 }, 1000 * 60 * 1)
 
 module.exports = SberStatus

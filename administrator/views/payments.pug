@@ -16,10 +16,11 @@ block content
                     th Дата
                     th Тип оплаты
                     th Статус
-                    th Фиксализация
+                    th Фискализация
+                    th Время до закрытия шлюза
             tbody
                 each item in data
-                    tr
+                    tr(style= item.status==="Оплачен"?item.FZ==="Фискализирован"?"background: #caffd8":"background: #cadeff;":"background: #ccc")
                         th=item.id
                         th=item.customOrderNumber
                         th=item.orderNumber
@@ -30,8 +31,9 @@ block content
                         th=item.delivery
                         th=item.date
                         th=item.type
-                        th=item.status
+                        th=item.status 
                         th=item.FZ
+                        th=item.countpayment
                         th
                             button.btn(data-id=item.id, data-type='edit') Изменить 
                         th
