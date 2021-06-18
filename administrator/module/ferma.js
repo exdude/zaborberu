@@ -237,6 +237,7 @@ setInterval(async () => {
     const ALL_PAYMENTS = await Payments.findAll({where: {type: 'QR'}})
     new SberStatus(ALL_PAYMENTS).qrStatus()
     new SberStatus().CHECK_FIKSALIZATION(ALL_PAYMENTS)
+    console.log('Фиксализация');
 }, 10000 * 60 * 5)
 
 module.exports = SberStatus
