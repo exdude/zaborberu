@@ -99,12 +99,10 @@ class SberStatus {
                     if (STATUS_PAY === 'PAID') {
                         const ANSWER = 'Оплачен'
                         await Payments.update({status: ANSWER},{where: {id: ID}})
-                        console.log(`Оплачен`);
                     }
                     if (STATUS_PAY === 'CREATED') {
                         const ANSWER = 'Создан'
                         await Payments.update({status: ANSWER},{where: {id: ID}})
-                        console.log(`Создан;`)
                     }
                 }
             }
@@ -112,19 +110,6 @@ class SberStatus {
     }
 
     CHECK_FIKSALIZATION(FZDATA) {
-        //ПРОВЕРКА СТАТУСА ПЛАТЕЖА ДЛЯ ФИКСАЛИЗАЦИИ
-        // (function(i) {
-        //     let x = 0
-        //     const intervalId = setInterval(() => {
-        //         x++
-        //         if (FZDATA[x].dataValues.status === 'Оплачен') {
-        //             if (FZDATA[x].dataValues.fz === 'Оплачен') {
-        //                 this.DO_FIKSALIZATION(xy.dataValues) 
-        //             }
-        //         }
-        //         if (i === x) clearInterval(intervalId)
-        //     }, 1000)
-        // })(FZDATA.length)
         FZDATA.forEach(xy => {
             if (xy.dataValues.status === 'Оплачен') {
                 if (!xy.dataValues.FZ) {
@@ -208,7 +193,6 @@ class SberStatus {
                         const ID = options.id
                         if (x.Status == 'Success') {
                             const ANSWER = 'Фиксализирован'
-                            console.log(x);
                             const ANSWER_ID = x.Data.ReceiptId ? x.Data.ReceiptId : 'ID транзакции нет'
                             await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
                             sendMail('Оплачен и фиксалезирован с помощью QR-кода', {
