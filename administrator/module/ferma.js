@@ -238,6 +238,6 @@ setInterval(async () => {
     new SberStatus(ALL_PAYMENTS).qrStatus()
     new SberStatus().CHECK_FIKSALIZATION(ALL_PAYMENTS)
     console.log('Фиксализация');
-}, 1000 * 60 * 5)
+}, 1000 * 60 * 1)
 
 module.exports = SberStatus
