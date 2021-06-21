@@ -190,13 +190,14 @@ class SberStatus {
                 .then(x => x.json())
                 .then(async x => {
                     //ОБНОВЛЕНИЕ ДАННЫХ О ФИКСАЛИЗАЦИИ ПЛАТЕЖА В ПАНЕЛИ АДМИНИСТРАТОРА
+                    console.log(x);
                     if (x.Status) {
                         const ID = options.id
                         if (x.Status == 'Success') {
                             const ANSWER = 'Фискализирован'
                             const ANSWER_ID = x.Data.ReceiptId ? x.Data.ReceiptId : 'ID транзакции нет'
                             await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
-                            sendMail('Оплачен и Фискализирован с помощью QR-кода', {
+                            sendMail('Оплачен и фискализирован с помощью QR-кода', {
                                 "Ручной номер заказа": options.customOrderNumber,
                                 "Сгенерированный номер заказа": options.orderNumber,
                                 "Сумма": options.count,
