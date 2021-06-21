@@ -139,9 +139,9 @@ class SberStatus {
                 const QUANTITY = 1
                 const INVOCEID = (new Date()).toString('yyyy1MM2dd0hh3mm4ss'+options.id)
                 fetch(CREATE_URL, {
-                    method: 'POST',
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json;charset=utf-8'
+                        "Content-Type": "application/json;charset=utf-8"
                     },
                     body: JSON.stringify({
                         "Request": {
@@ -190,7 +190,7 @@ class SberStatus {
                 .then(x => x.json())
                 .then(async x => {
                     //ОБНОВЛЕНИЕ ДАННЫХ О ФИКСАЛИЗАЦИИ ПЛАТЕЖА В ПАНЕЛИ АДМИНИСТРАТОРА
-                    console.log(x);
+                    console.log(x)
                     if (x.Status) {
                         const ID = options.id
                         if (x.Status == 'Success') {
@@ -208,7 +208,7 @@ class SberStatus {
                             })
                         } else {
                             const ANSWER = 'Ошибка'
-                            const ANSWER_ID = 'ID not found'
+                            const ANSWER_ID = x.Error.Message
                             await Payments.update({FZ: ANSWER, FZ_ID: ANSWER_ID},{where: {id: ID}})
                         }
                     }
@@ -223,6 +223,6 @@ setInterval(async () => {
     const ALL_PAYMENTS = await Payments.findAll({where: {type: 'QR'}})
     new SberStatus(ALL_PAYMENTS).qrStatus()
     new SberStatus().CHECK_FIKSALIZATION(ALL_PAYMENTS)
-}, 1000 * 60 * 1)
+}, 5000)
 
 module.exports = SberStatus

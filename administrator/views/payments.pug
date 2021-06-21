@@ -17,6 +17,7 @@ block content
                     th Тип оплаты
                     th Статус
                     th Фискализация
+                    th ID/Ошибка
                     th Время до закрытия шлюза
             tbody
                 each item in data
@@ -34,6 +35,7 @@ block content
                             th=item.type
                             th=item.status 
                             th=item.FZ
+                            th=item.FZ_ID
                             th=item.countpayment
                             th
                                 button.btn(data-id=item.id, data-type='edit') Изменить 
@@ -53,6 +55,7 @@ block content
                             th=item.type
                             th=item.status 
                             th=item.FZ
+                            th=item.FZ_ID
                             th=item.countpayment
                             th
                                 button.btn(data-id=item.id, data-type='edit') Изменить 
