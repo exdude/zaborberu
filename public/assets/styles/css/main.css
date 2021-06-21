@@ -503,6 +503,10 @@ section, footer {
               margin-right: 35px;
               max-width: 175px;
               min-width: 175px; }
+              @media screen and (max-width: 1280px) {
+                .cards.contain .types-body .types-card__disc ul p {
+                  max-width: 65px;
+                  min-width: 120px; } }
             .cards.contain .types-body .types-card__disc ul span {
               font-weight: 500; }
             .cards.contain .types-body .types-card__disc ul a {
