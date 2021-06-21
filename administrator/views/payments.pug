@@ -20,21 +20,41 @@ block content
                     th Время до закрытия шлюза
             tbody
                 each item in data
-                    tr(style= item.status==="Оплачен"?item.FZ==="Фискализирован"?"background: #caffd8":"background: #cadeff;":"background: #ccc")
-                        th=item.id
-                        th=item.customOrderNumber
-                        th=item.orderNumber
-                        th=item.count
-                        th=item.lastName
-                        th=item.email
-                        th=item.phone
-                        th=item.delivery
-                        th=item.date
-                        th=item.type
-                        th=item.status 
-                        th=item.FZ
-                        th=item.countpayment
-                        th
-                            button.btn(data-id=item.id, data-type='edit') Изменить 
-                        th
-                            button.btn.delete(data-id=item.id, data-type='delete') Удалить  
+                    if item.FZ==="Фискализирован"
+                        tr(style="background: #caffd8;")
+                            th=item.id
+                            th=item.customOrderNumber
+                            th=item.orderNumber
+                            th=item.count
+                            th=item.lastName
+                            th=item.email
+                            th=item.phone
+                            th=item.delivery
+                            th=item.date
+                            th=item.type
+                            th=item.status 
+                            th=item.FZ
+                            th=item.countpayment
+                            th
+                                button.btn(data-id=item.id, data-type='edit') Изменить 
+                            th
+                                button.btn.delete(data-id=item.id, data-type='delete') Удалить  
+                    if item.FZ==="Ошибка"
+                        tr(style="background: #ffcaca;")
+                            th=item.id
+                            th=item.customOrderNumber
+                            th=item.orderNumber
+                            th=item.count
+                            th=item.lastName
+                            th=item.email
+                            th=item.phone
+                            th=item.delivery
+                            th=item.date
+                            th=item.type
+                            th=item.status 
+                            th=item.FZ
+                            th=item.countpayment
+                            th
+                                button.btn(data-id=item.id, data-type='edit') Изменить 
+                            th
+                                button.btn.delete(data-id=item.id, data-type='delete') Удалить  
