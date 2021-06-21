@@ -225,7 +225,7 @@ section, footer
     min-width: 100%
     margin-top: 105px
     @media screen and ( max-width: $main-scale )
-        margin-top: 160px
+        margin-top: 100px
 
 .header
     max-width: 100%
@@ -253,6 +253,9 @@ section, footer
             flex-direction: column
             padding: 20px 0
             gap: 20px
+        .logo
+            @media screen and ( max-width: $main-scale )
+                display: none
         .content-phones
             display: flex
             i
@@ -263,12 +266,15 @@ section, footer
     nav
         @media screen and ( max-width: $main-scale )
             display: none
+            &.active
+                display: block
         ul
             display: flex
             list-style-type: none
             gap: 40px
             @media screen and ( max-width: $main-scale )
                 padding: 0 20px
+                font-size: .8em
                 a
                     li
                         text-align: center
@@ -385,7 +391,7 @@ section, footer
                 z-index: 10
                 @media screen and ( max-width: 1080px )
                     align-items: center
-                    margin: 80px 80px 0 80px
+                    margin: 80px 30px 0 30px
                     h1
                         text-align: center
                         @media screen and ( max-width: $main-scale - 700 )
@@ -454,14 +460,16 @@ section, footer
                     min-width: 100%
                     &.active
                         display: flex
+                        @media screen and ( max-width: $main-scale )
+                            flex-direction: column
                     &__img
                         display: flex
                         justify-self: center
                         align-items: center
                         max-width: 30%
                         background: #C7DBFC
-                        @media screen and ( max-width: $main-scale )
-                            display: none
+                        @media screen and ( max-width: $main-scale ) 
+                            max-width: 100%
                         img
                             width: 100%
                             margin: auto
@@ -575,16 +583,17 @@ section, footer
                     @media screen and ( max-width: $main-scale )
                         display: block !important
                         position: absolute
-                        margin-top: 640px
+                        margin-top: 280px
                         @include sbtn($main-scale, 20px, #ffffff00, false)
                         
             .slider-body
                 display: flex
                 overflow: hidden
+                position: relative
                 min-width: 100%
                 @media screen and ( max-width: $main-scale )
-                    max-width: 80%
-                    min-width: 80%
+                    max-width: 95%
+                    min-width: 95%
                     margin: 0 auto
             .slide
                 display: flex
@@ -595,6 +604,7 @@ section, footer
                 transition: 1s
                 @media screen and ( max-width: $main-scale )
                     justify-content: center
+                    min-height: 260px
                 &-info
                     background: rgba(255, 255, 255, 0.9)
                     border-radius: 3px
@@ -604,16 +614,20 @@ section, footer
                     margin: 20px
                     @media screen and ( max-width: $main-scale )
                         padding: 5px
-                        margin: 10px
-                    li
-                        display: flex
-                    li > p
-                        max-width: 190px
-                        min-width: 190px
-                        color: #606060
+                        margin-bottom: 5px
+                        position: absolute
+                    ul
                         @media screen and ( max-width: $main-scale )
+                            font-size: 0.6em
+                        li
+                            display: flex
+                        li > p
                             max-width: 190px
-                            min-width: 156px
+                            min-width: 190px
+                            color: #606060
+                            @media screen and ( max-width: $main-scale )
+                                max-width: 190px
+                                min-width: 156px
 
 .faq
     background: #F1F1F1
@@ -742,6 +756,11 @@ footer
         box-shadow: 0 0 5px #fccfcf
     .contain
         padding: 100px 0
+
+    .img-pay
+        @media screen and ( max-width: 1280px )
+            width: 300px
+            
     .payment
         *
             transition: .3s
@@ -778,6 +797,8 @@ footer
                 border-radius: 0 0 5px 5px 
                 background: #fff
                 padding: 20px
+                @media screen and ( max-width: $main-scale )
+                    padding: 5px
                 .form
                     @media screen and ( max-width: $main-scale )
                         flex-direction: column

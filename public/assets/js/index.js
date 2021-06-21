@@ -28,34 +28,32 @@ window.rtl = (str) => {
 const ff = new Wigets()
 
 document.addEventListener('DOMContentLoaded', e => {
-    new ThreeDeSlider({
-        el: document.querySelector('.slider-info__slider')
-    }).mount()
-
-    //PARALAX JS
-    var scene = document.querySelector('.grass-bg')
-    new Parallax(scene)
-    var faqOne = document.querySelector('.grass.first')
-    new Parallax(faqOne)
-    var faqSecond = document.querySelector('.grass.second')
-    new Parallax(faqSecond)
-
-    //MOB MENU
-    ff.mobMenu(document.querySelector('.mob-menu'), document.querySelector('.main-menu'))
-
-    //sliders
-    ff.assorty(document.querySelectorAll('.types-header__btn'), document.querySelectorAll('.types-card'), document.querySelectorAll('.types-btn'))
-    ff.projectSlider(document.querySelectorAll('.projects > .slider > .slider-body > .slide '), document.querySelectorAll('.slider > .btns > button'))
-
-    //faq
-    ff.faq(document.querySelectorAll('.collapsible'))
-
-    //img modals
-    ff.openImgs()
-
-    //modals
-    modals(ff)
-
-    //PickCity
-    new PickCity().init()
+        new ThreeDeSlider({
+            el: document.querySelector('.slider-info__slider')
+        }).mount()
+    
+        //PARALAX JS
+        var scene = document.querySelector('.grass-bg')
+        new Parallax(scene)
+        var faqOne = document.querySelector('.grass.first')
+        new Parallax(faqOne)
+        var faqSecond = document.querySelector('.grass.second')
+        new Parallax(faqSecond)
+    
+        //sliders
+        ff.assorty(document.querySelectorAll('.types-header__btn'), document.querySelectorAll('.types-card'), document.querySelectorAll('.types-btn'))
+        ff.projectSlider(document.querySelectorAll('.projects > .slider > .slider-body > .slide '), document.querySelectorAll('.slider > .btns > button'))
+    
+        //faq
+        ff.faq(document.querySelectorAll('.collapsible'))
+    
+        //img modals
+        ff.openImgs()
+    
+        //modals
+        modals(ff)
+    
+        //PickCity
+        new PickCity().init()
+    
 })
