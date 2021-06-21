@@ -112,6 +112,9 @@ label {
 table thead tr th {
   font-weight: 600; }
 
+table tr:nth-child(even) {
+  background: #cadeff; }
+
 table tr th {
   font-weight: normal;
   font-size: .8em; }
