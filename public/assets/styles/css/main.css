@@ -358,6 +358,7 @@ section, footer {
     gap: 95px; }
     @media screen and (max-width: 1080px) {
       .main .slider-info__info {
+        gap: 45px;
         width: 100%; } }
     .main .slider-info__info-block {
       display: flex;
@@ -372,7 +373,7 @@ section, footer {
       @media screen and (max-width: 1080px) {
         .main .slider-info__info-block {
           align-items: center;
-          margin: 80px 30px 0 30px; }
+          margin: 45px 30px 0 30px; }
           .main .slider-info__info-block h1 {
             text-align: center; } }
     @media screen and (max-width: 1080px) and (max-width: 580px) {
@@ -415,6 +416,9 @@ section, footer {
   .cards.contain {
     max-width: 780px;
     padding: 100px 0; }
+    @media screen and (max-width: 1280px) {
+      .cards.contain {
+        padding: 10px 0; } }
     .cards.contain .types-btn {
       margin-top: 200px;
       border: none;
@@ -437,6 +441,9 @@ section, footer {
       display: flex;
       justify-content: space-between;
       margin: 40px 0 20px 0; }
+      @media screen and (max-width: 1280px) {
+        .cards.contain .types-header {
+          margin: 5px 0 20px 0; } }
       .cards.contain .types-header button {
         background: #00000000;
         border: 1px #4285F4 dashed;
@@ -529,12 +536,16 @@ section, footer {
   background: #e4e4e4; }
   .work.contain {
     padding: 100px 0 0 0; }
+    @media screen and (max-width: 1280px) {
+      .work.contain {
+        padding: 20px 0 0 0; } }
     .work.contain .row.block {
       justify-content: space-between;
       padding-top: 90px; }
       @media screen and (max-width: 1280px) {
         .work.contain .row.block {
-          justify-content: center; }
+          justify-content: center;
+          padding-top: 10px; }
           .work.contain .row.block img {
             display: none; } }
       .work.contain .row.block .col.info {
@@ -570,6 +581,9 @@ section, footer {
   background: #f5f5f5; }
   .projects.contain {
     padding: 100px 0; }
+    @media screen and (max-width: 1280px) {
+      .projects.contain {
+        padding: 20px 0; } }
     .projects.contain .slider {
       margin-top: 60px; }
       @media screen and (max-width: 1280px) {
@@ -662,6 +676,9 @@ section, footer {
   background: #F1F1F1; }
   .faq.contain {
     padding: 100px 0; }
+    @media screen and (max-width: 1280px) {
+      .faq.contain {
+        padding: 70px 0; } }
     .faq.contain .faq-attribute {
       position: absolute; }
       .faq.contain .faq-attribute img:nth-child(even) {

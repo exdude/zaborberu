@@ -378,6 +378,7 @@ section, footer
             width: 50%
             gap: 95px
             @media screen and ( max-width: 1080px )
+                gap: 45px
                 width: 100%
             &-block
                 display: flex
@@ -391,7 +392,7 @@ section, footer
                 z-index: 10
                 @media screen and ( max-width: 1080px )
                     align-items: center
-                    margin: 80px 30px 0 30px
+                    margin: 45px 30px 0 30px
                     h1
                         text-align: center
                         @media screen and ( max-width: $main-scale - 700 )
@@ -432,6 +433,8 @@ section, footer
     &.contain
         max-width: $card-width
         padding: 100px 0
+        @media screen and ( max-width: $main-scale )
+            padding: 10px 0
         .types
             &-btn
                 margin-top: 200px
@@ -440,6 +443,8 @@ section, footer
                 display: flex
                 justify-content: space-between
                 margin: 40px 0 20px 0
+                @media screen and ( max-width: $main-scale )
+                    margin: 5px 0 20px 0
                 button
                     background: #00000000
                     border: 1px $main-color dashed
@@ -530,11 +535,14 @@ section, footer
     background: #e4e4e4
     &.contain
         padding: 100px 0 0 0
+        @media screen and ( max-width: $main-scale )
+            padding: 20px 0 0 0
         .row.block
             justify-content: space-between
             padding-top: 90px
             @media screen and ( max-width: $main-scale )
                 justify-content: center
+                padding-top: 10px
                 img
                     display: none
             .col.info
@@ -567,6 +575,8 @@ section, footer
     background: #f5f5f5
     &.contain
         padding: 100px 0
+        @media screen and ( max-width: $main-scale )
+            padding: 20px 0
         .slider
             margin-top: 60px
             .row.btns
@@ -633,6 +643,8 @@ section, footer
     background: #F1F1F1
     &.contain
         padding: 100px 0
+        @media screen and ( max-width: $main-scale )
+            padding: 70px 0
         .faq-attribute
             position: absolute
             img:nth-child(even)
