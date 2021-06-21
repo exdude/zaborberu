@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded',  e => {
             } else if (x.dataset['type'] === 'edit') {
                 const data = (await getData(x.dataset['id'])).result
                 form('Изменить офис', x.dataset['id'], data)
-                console.log(data)
             } else if (x.dataset['type'] === 'delete') {
                 deleteForm(x.dataset['id'])
             }
@@ -53,7 +52,9 @@ const form = (title, id = false, data = false) => {
                     </label>
                     <label class="col gap-m">
                         <b>Тип:</b>
-                        <input type="text" disabled name="type" value="Терминал самовывоза ZABORBERU" required>
+                        <select size="1" name="type" style="height: 35px; padding-left: 10px;">
+                            <option selected value="Терминал самовывоза ZABORBERU">Терминал самовывоза ZABORBERU</option>
+                        </select>
                     </label>
                 </div>
             </div>
