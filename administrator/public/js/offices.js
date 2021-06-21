@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded',  e => {
                 form('Изменить офис', x.dataset['id'], data)
                 console.log(data)
             } else if (x.dataset['type'] === 'delete') {
+                deleteForm(x.dataset['id'])
             }
         })
     })
@@ -75,6 +76,32 @@ const form = (title, id = false, data = false) => {
     document.body.append(modal)
 }
 
+const deleteForm = (id) => {
+    const modal = document.createElement('DIV')
+    modal.classList.add('modal')
+    modal.insertAdjacentHTML('afterbegin',`
+    <div class="modal-bg box">
+        <div class="modal-bg__close">
+            <button class="close">X</button>
+        </div>
+        <div class="mid col gap"><b>Точно удалить данные?</b> <form method="POST" action="/api"><input hidden name="id" value="${id}"><input hidden name="ltype" value="offices"><input hidden name="action" value="delete"><button class="btn delete">Удалить</button><form></div>
+    </div>
+    `)
+    modal.addEventListener('click', x => {
+        if (x.target.classList.contains('modal')) {
+            document.body.style.overflowY = "visible"
+            x.target.remove()
+        }
+    })
+    modal.children[0].addEventListener('click', x => {
+        if (x.target.classList.contains('close')) {
+            document.body.style.overflowY = "visible"
+            modal.remove()
+        }
+    })
+    document.body.append(modal)
+}
+
 let getData = async (id) => {
     return await fetch('/api', {
         method: 'POST',
@@ -84,6 +111,22 @@ let getData = async (id) => {
         body: JSON.stringify({
             "ltype": "offices",
             "action": "get_id",
+            "id": id,
+            "f": true
+        })
+    })
+    .then(x => x.json())
+}
+
+let deleteData = async (id) => {
+    return await fetch('/api', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "ltype": "offices",
+            "action": "delete",
             "id": id,
             "f": true
         })
