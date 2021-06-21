@@ -6,8 +6,10 @@ const sequelize = new Sequelize(process.env.MYSQL_DB, process.env.MYSQL_USER, pr
 })
 
 const Payments = require('./payments')(sequelize)
+const points = require('./points')(sequelize)
 
 module.exports = {
     sequelize : sequelize,
+    points : points,
     payments: Payments
 }

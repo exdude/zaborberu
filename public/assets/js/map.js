@@ -37,7 +37,7 @@ function cookies() {
 setTimeout(() => {
     try {
         let data = cookies()['data']
-        fetch('https://zaborbest.ru/api')
+        fetch('/map')
             .then(response => response.json())
             .then((dataRows) => {
                 ymaps.ready(init);
@@ -51,34 +51,17 @@ setTimeout(() => {
                             searchControlProvider: 'yandex#search'
                         });
                         dataRows.forEach(x => {
-                            const { address, phartner, telephones, schedule, coord, type } = x
+                            const { address, phones, schedule, coords, type } = x
                             let coordinatos = new Array()
-                            let getNewPartner = ''
-                            for (let i = 0; i < coord.split(",").length; i++) {
-                                coordinatos.push(Number(coord.split(",")[i]));
-                            }
-                            if (phartner == 0) {
-                                getNewPartner = ''
-                            } else {
-                                getNewPartner = phartner + ', '
-                            }
-                            let icon = () => {
-                                if (type === 'Официальный партнер ЗМК "Сталькомплект"') {
-                                    return 'dealer'
-                                } else if (type === 'Официальный партнер ЗМК Сталькомплект') {
-                                    return 'dealer'
-                                } else if (type === 'Терминал самовывоза ЗМК Сталькомплект') {
-                                    return 'cargo'
-                                } else if (type === 'ЗМК Сталькомплект офис продаж') {
-                                    return 'sale'
-                                }
+                            for (let i = 0; i < coords.split(",").length; i++) {
+                                coordinatos.push(Number(coords.split(",")[i]));
                             }
                             var myPlacemark = new ymaps.Placemark(coordinatos, {
                                 hintContent: '<b>' + type + '</b> ' + address,
-                                balloonContent: '<b>' + type + '</b> ' + '<br/>' + getNewPartner + address + '<br/><b>Телефоны:</b><br/> ' + telephones + ' <br/> <b>Время работы:</b><br/>' + schedule
+                                balloonContent: '<b>' + type + '</b> ' + '<br/>' + address + '<br/><b>Телефоны:</b><br/> ' + phones + ' <br/> <b>Время работы:</b><br/>' + schedule
                             }, {
                                 iconLayout: 'default#image',
-                                iconImageHref: `/assets/mapicons-${icon()}.png`,
+                                iconImageHref: `/assets/mapicons-cargo.png`,
                                 iconImageClipRect: [
                                     [0, 0],
                                     [55, 57]

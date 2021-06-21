@@ -5,6 +5,7 @@ const Projects = db.Projects
 const ProjectsEu = db.ProjectsEu
 const Faq = db.Faq
 const Payments = db.Payments
+const Offices = db.Offices
 
 class Controllers {
     index(req, res, next) {
@@ -55,6 +56,13 @@ class Controllers {
             Payments: true
         })
     }
+    async offices(req, res, next) {
+        res.render('offices', {
+            title: 'Панель администратора офисы',
+            data: await Offices.findAll().then(result => result),
+            Offices: true
+        })
+    }
     async error(req, res, next) {
         res.render('error', {
             title: 'Ошибка сервера'
@@ -62,6 +70,7 @@ class Controllers {
     }
 
     api(req, res, next) {
+        console.log(req.body);
         switch(req.body.ltype) {
             case 'assorty':
                 actions(req, res, Assorty)
@@ -78,7 +87,13 @@ class Controllers {
             case 'faq':
                 actions(req, res, Faq)
                 break
+            case 'offices':
+                actions(req, res, Offices)
+                break
         }
+    }
+    async map(req, res, next) {
+        res.json(await Offices.findAll().then(result => result))
     }
 }
 

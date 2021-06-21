@@ -23,6 +23,7 @@ class Core {
             this.app.use(multer)
             this.app.set('view engine', 'pug')
             this.app.use(this.router)
+            this.app.use((req, res, next) => res.status(404).render('404'))
             this.app.listen(PORT, () => console.log(`Server strted on port ${PORT}`))
         } catch (err) {
             console.log(`Server stoped with error:`)

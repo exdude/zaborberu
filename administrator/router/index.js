@@ -10,6 +10,9 @@ rout.get('/projectseu', controller.projectseu)
 rout.get('/faq', controller.faq)
 rout.get('/payments', controller.payments)
 rout.get('/error', controller.error)
+rout.get('/api', controller.map)
+rout.get('/offices', controller.offices)
+rout.get('/map', controller.map)
 rout.post('/api', controller.api)
 
 module.exports = rout

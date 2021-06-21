@@ -1,0 +1,29 @@
+extends layout.pug
+block content
+    section.block.gap.col
+        h2 Офисы
+        button.btn.add(data-type='add') Добавить
+        table
+            thead
+                tr
+                    th Номер
+                    th Адрес
+                    th График
+                    th Телефон
+                    th Координаты
+                    th Город
+                    th Тип
+            tbody
+                each item in data
+                    tr
+                        th=item.id
+                        th=item.address
+                        th=item.schedule
+                        th=item.phones
+                        th=item.coords
+                        th=item.city
+                        th=item.type
+                        th
+                            button.btn(data-id=item.id, data-type='edit') Изменить
+                        th
+                            button.btn.delete(data-id=item.id, data-type='delete') Удалить

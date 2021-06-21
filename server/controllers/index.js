@@ -1,5 +1,7 @@
 const opt = require('./options/index')
 const SberBank = require('../sberbank/index')
+const db = require('../model/index')
+const offices = db.points
 
 class Controllers {
 
@@ -44,6 +46,9 @@ class Controllers {
     async payIt(req, res) {
         const sberbank = new SberBank(req.body)
         res.json(await sberbank.init())
+    }
+    async map(req, res) {
+        res.json(await offices.findAll().then(result => result))
     }
 }
 

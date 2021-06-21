@@ -15,6 +15,7 @@ const Projects = require('./models/Projects')(sequelize)
 const ProjectsEu = require('./models/ProjectsEu')(sequelize)
 const Faq = require('./models/Faq')(sequelize)
 const Payments = require('./models/Payments')(sequelize)
+const Offices = require('./models/Points')(sequelize)
 
 module.exports = {
     sequelize : sequelize,
@@ -23,5 +24,6 @@ module.exports = {
     Projects: Projects,
     ProjectsEu: ProjectsEu,
     Payments: Payments,
+    Offices: Offices,
     Faq: Faq
 }
