@@ -286,7 +286,8 @@ section, footer {
   z-index: 100; }
   @media screen and (max-width: 1280px) {
     .main .grass {
-      margin-top: -150px; } }
+      margin-top: -150px;
+      margin-left: -80px; } }
 
 .main .grass-bg {
   position: absolute;
