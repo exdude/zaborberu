@@ -1,5 +1,4 @@
 require('dotenv').config()
-const e = require('express')
 const fetch = require('node-fetch')
 const rtl = require('../rtl')
 
