@@ -308,6 +308,9 @@ section, footer
     .grass
         position: absolute
         z-index: 100
+        @media screen and ( max-width: $main-scale )
+            margin-top: -150px
+            
     .grass-bg
         position: absolute
         margin: -30% 0 0 30%
@@ -318,7 +321,7 @@ section, footer
         padding: 15px 0
         justify-content: flex-end
         @media screen and ( max-width: $main-scale )
-            padding-top: 120px
+            padding-top: 20px
             padding-right: 20px
         p 
             color: #BCBCBC

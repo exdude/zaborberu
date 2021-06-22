@@ -284,6 +284,9 @@ section, footer {
 .main .grass {
   position: absolute;
   z-index: 100; }
+  @media screen and (max-width: 1280px) {
+    .main .grass {
+      margin-top: -150px; } }
 
 .main .grass-bg {
   position: absolute;
@@ -298,7 +301,7 @@ section, footer {
   justify-content: flex-end; }
   @media screen and (max-width: 1280px) {
     .main .location {
-      padding-top: 120px;
+      padding-top: 20px;
       padding-right: 20px; } }
   .main .location p {
     color: #BCBCBC; }
