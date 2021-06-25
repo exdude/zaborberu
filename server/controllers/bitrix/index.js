@@ -7,8 +7,12 @@ class Bitrix {
         this.name = opt.name
         this.phone = opt.phone
         this.city = opt.city
+        this.colors = opt.colors
         this.delivery = opt.delivery ? opt.delivery : false
         this.messenger = opt.messenger ? opt.messenger : false
+        this.material = opt.material ? opt.material : 'Не указан'
+        this.code_color = opt.code_color ? opt.code_color : 'Не указан'
+        this.width = opt.width ? opt.width : 'Не указан'
     }
 
     body() {
@@ -40,12 +44,15 @@ class Bitrix {
         })
         .then(data => data.json())
         .then(json => {
+            console.log(this.colors);
             if (this.delivery) this.comments(json, 'По возможности использовать льготную доставку: ', this.delivery ? 'Да' : 'Нет')
             if (this.messenger) this.comments(json, 'Отправить прайс по мессенджеру: ', this.messenger)
+            if (this.colors) this.comments(json, `Город: ${this.city}, Выбранные свойства: `, `Материал: ${this.material}, цвет: ${this.code_color}, ширина: ${this.width}`)
         })
     }
 
     comments(json, title, value) {
+        console.log(`Commentary`);
         const id = json.result
         const obj = {
             fields:

@@ -61,6 +61,7 @@ block content
                 img(src="/assets/img/grass/3.png", style="margin:120px 0 0 165px", data-depth="3")
                 img(src="/assets/img/grass/4.png", style="margin:170px 0 0 225px; filter: blur(1px)", data-depth="15")
                 img(src="/assets/img/grass/5.png", style="margin:200px 0 0 405px; filter: blur(2px);", data-depth="9")
+    
     section.cards
         .cards.contain
             h2 АССОРТИМЕНТ
@@ -103,7 +104,9 @@ block content
                                     .row
                                         img(src="/assets/img/main/dellivery.png")
                                         p Готовы в день оплаты отправить ваш заказ в любой город России
-                                    button.btn(data-order="true") ЗАКАЗАТЬ С ДОСТАВКОЙ            
+                                    button.btn(data-order="true") ЗАКАЗАТЬ С ДОСТАВКОЙ
+    if isSht
+        include ./partials/calc.pug
     section.work
         .work.contain
             h2 КАК МЫ РАБОТАЕМ

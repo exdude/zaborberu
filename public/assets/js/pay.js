@@ -89,6 +89,7 @@ function init() {
 
 
 function getStatus(Status = 'suc', d, type) {
+    console.log(d)
     const div = document.createElement('DIV')
     if (type === 'QR') div.innerHTML = d.error.moreInformation
     if (type === 'CVV') div.innerHTML = d.result.errorMessage

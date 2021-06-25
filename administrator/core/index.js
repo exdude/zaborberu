@@ -1,5 +1,5 @@
 require('dotenv').config()
-require('../module/ferma')
+require('../payments/ferma')
 
 
 const PORT = process.env.PORT || 3000

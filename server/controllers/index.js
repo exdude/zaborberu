@@ -19,13 +19,18 @@ class Controllers {
     bitrix(req, res) {
         const b = require('./bitrix/index')
         const d = req.body
+        console.log(d);
         new b({
             title: d.title,
             name: d.name,
             phone: d.phone,
+            messenger: d.messenger,
             delivery: d.delivery,
+            colors: d.colors,
+            material: d.material,
+            code_color: d.code_color,
+            width: d.width,
             city: d.city,
-            messenger: d.messenger
         }).send()
         res.redirect('/thanks?name=' + d.name)
     }
@@ -42,13 +47,15 @@ class Controllers {
         }
         
     }
-
     async payIt(req, res) {
         const sberbank = new SberBank(req.body)
         res.json(await sberbank.init())
     }
     async map(req, res) {
         res.json(await offices.findAll().then(result => result))
+    }
+    async colors(req, res) {
+        res.json(require('../store/colors'))
     }
 }
 

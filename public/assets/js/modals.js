@@ -4,7 +4,7 @@ export let modals = (ff) => {
         'Наши внимательные сотрудники перезвонят Вам в самое ближайшее время!',
         `<form class="br" method="POST" action="/bitrix">
             <div class="col gap mid">
-                <input value="Заявка с сайта zaborberu.ru" name="title" hidden>
+                <input value="${location.pathname === ("/eu" || "/eu/") ? "Заявка еврожалюзи с сайта zaborberu.ru" : "Заявка штакетники с сайта zaborberu.ru"}" name="title" hidden>
                 <input type="text" placeholder="Ваше имя" name="name" required>
                 <input type="text" placeholder="Номер Вашего телефона" name="phone" required>
                 <input hidden name="city" value="${cookies().data.name}">

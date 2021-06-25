@@ -8,6 +8,7 @@ router.get('/thanks', con.thanks)
 router.get('/about', con.about)
 router.get('/pay', con.pay)
 router.get('/map', con.map)
+router.get('/colors', con.colors)
 router.post('/pay', con.payIt)
 router.post('/bitrix', con.bitrix)
 

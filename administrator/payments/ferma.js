@@ -31,9 +31,9 @@ class SberStatus {
         return buff.toString('base64')
     }
 
-    auth() {
+    async qrAuth() {
         //АВТОРИЗАЦИЯ И ПОЛУЧЕНИЯ ТОКЕНА ДЛЯ SBERBANK
-        const token = fetch(process.env.QR_AUTH , {
+        const token = await fetch(process.env.QR_AUTH , {
             method: 'POST',
             headers: {
                 accept: 'application/json',
@@ -49,70 +49,61 @@ class SberStatus {
         return token
     }
 
-     async getStatus(opt, x) {
-         console.log(x);
-        //ПОЛУЧЕНИЕ СТАТУСА ПЛАТЕЖА
+     async getQrStatus(payment) {
+        const header = { 
+            accept: 'application/json',
+            'content-type': 'application/json',
+            'x-Introspect-RqUID': this.rquuid,
+            authorization: `Bearer ${await this.qrAuth()}`,
+            'x-ibm-client-id': process.env.QR_CLIENT_ID
+        }
+        const body = JSON.stringify({rq_uid: payment.rq_uid, order_id: payment.qrOrderId, rq_tm: payment.rq_tm})
         const result = await fetch(process.env.QR_STATUS, {
             method: 'POST',
-            headers: 
-            { 
-                accept: 'application/json',
-                'content-type': 'application/json',
-                'x-Introspect-RqUID': this.rquuid,
-                authorization: `Bearer ${await this.auth()}`,
-                'x-ibm-client-id': process.env.QR_CLIENT_ID
-            },
-            body: JSON.stringify(opt),
+            headers: header,
+            body: body,
             json: true 
         })
         .then(answ => answ.json())
         .then(async answ => {
-            if (!x.countpayment) {
-                const NEW_COUNT = 1 
-                await Payments.update({countpayment: NEW_COUNT},{where: {qrOrderId: opt.rq_uid}})
-                .catch(err => console.log(`Ошибка обновления стауса оплаты qr кодом`))
-            } else if (x.countpayment <= process.env.QR_DELAY) {
-                const GET_COUNT = x.countpayment + 1
-                await Payments.update({countpayment: GET_COUNT},{where: {qrOrderId: opt.rq_uid}})
-                .catch(err => console.log(`Ошибка обновления стауса оплаты qr кодом`))
-            }
-            if (x.countpayment === process.env.QR_DELAY) {
-                await Payments.update({countpayment: 'Время оплаты вышло', status: 'Не оплачен'},{where: {qrOrderId: opt.rq_uid}})
-                .catch(err => console.log(`Ошибка обновления стауса оплаты qr кодом`))
+            const num = Number(payment.countpayment)
+            const del = Number(process.env.QR_DELAY)
+            if (payment.status === "Создан") {
+                if (!num) {
+                    await Payments.update({countpayment: 1},{where: {qrOrderId: opt.rq_uid}})
+                } else if (payment.countpayment <= del) {
+                    await Payments.update({countpayment: num + 1},{where: {qrOrderId: opt.rq_uid}})
+                }else if (num >= del) {
+                    await Payments.update({countpayment: 'Время оплаты вышло', status: 'Не оплачен'},{where: {qrOrderId: opt.rq_uid}})
+                }
             }
             return answ
         })
         return result
     }
 
-    qrStatus() {
-        //ОБНОВЛЕНИЯ СТАТУСА ПЛАТЕЖА В ПАНЕЛИ АДМИНИСТРАТОРА
-        this.paymentOrders.forEach(async (y, i) => {
-            const x = y.dataValues
-            const TYPE_OF_PAY = x.type
-            const STATUS = x.status
-            const ID = x.id
-            if (TYPE_OF_PAY === 'QR') {
-                if (STATUS === 'CREATED' || STATUS === 'Создан') {
-                    const SYSTEM_DATA = { rq_uid: x.qrOrderId, order_id: x.orderNumber, rq_tm: x.rq_tm}
-                    const STATUS_ORDER = await this.getStatus(SYSTEM_DATA, x)
-                    const STATUS_PAY = STATUS_ORDER.status.order_state
-                    if (STATUS_PAY === 'PAID') {
-                        const ANSWER = 'Оплачен'
-                        await Payments.update({status: ANSWER},{where: {id: ID}})
-                    }
-                    if (STATUS_PAY === 'CREATED') {
-                        const ANSWER = 'Создан'
-                        await Payments.update({status: ANSWER},{where: {id: ID}})
+    checkQrStatus() {
+        (async (x) => {
+            let i = 0
+            const intervalID = setInterval(async () => {
+                const payment = this.paymentOrders[i].dataValues
+                if (payment.type === "QR") {
+                    if (payment.status === "CREATED") {
+                        const statusOfPayment = await this.getQrStatus(payment)
+                        if (statusOfPayment.status.order_state === "PAID") {
+                            await Payments.update({status: 'PAID'},{where: {id: payment.id}})
+                        }
                     }
                 }
-            }
-        })
+                i++
+                if (i >= x) clearInterval(intervalID)
+            }, 1000)
+        })(this.paymentOrders.length)
     }
 
     CHECK_FIKSALIZATION(FZDATA) {
         FZDATA.forEach(xy => {
-            if (xy.dataValues.status === 'Оплачен') {
+            if (xy.dataValues.status === "PAID") {
                 if (!xy.dataValues.FZ) {
                     this.DO_FIKSALIZATION(xy.dataValues) 
                 }
@@ -121,8 +112,7 @@ class SberStatus {
     }
 
     async DO_FIKSALIZATION(options) {
-        if (!options.FZ_ID) {
-            //ПОЛУЧЕНИЕ ТОКЕНА АВТОРИЗАЦИИ
+        if (options.FZ !== "Фискализирован") {
             await fetch(`https://${process.env.OFD_LINK}/api/Authorization/CreateAuthToken`, {
                 method: 'POST',
                 headers: {
@@ -130,7 +120,6 @@ class SberStatus {
                 },
                 body: JSON.stringify({"Login": process.env.OFD_LOGIN,"Password": process.env.OFD_PASS})
             })
-            .catch(err => console.log(err))
             .then(data => data.json())
             .then(data => {
                 //АВТОРИЗАЦИЯ И ПОСЛЕДУЩАЯ ФИКСАЛИЗАЦИЯ ПЛАТЕЖА
@@ -154,7 +143,7 @@ class SberStatus {
                             },
                             "CustomerReceipt": {
                                 "BillAddress": "zaborberu.ru",
-                                "TaxationSystem": "Common",
+                                "TaxationSystem": "SimpleIn",
                                 "Email": options.email,
                                 "Phone": options.phone,
                                 "AutomaticDeviceNumber": null,
@@ -189,8 +178,7 @@ class SberStatus {
                 })
                 .then(x => x.json())
                 .then(async x => {
-                    //ОБНОВЛЕНИЕ ДАННЫХ О ФИКСАЛИЗАЦИИ ПЛАТЕЖА В ПАНЕЛИ АДМИНИСТРАТОРА
-                    console.log(x)
+                    console.log(x);
                     if (x.Status) {
                         const ID = options.id
                         if (x.Status == 'Success') {
@@ -221,8 +209,8 @@ class SberStatus {
 /* ПРОВЕРКА ФИКСАЛИЗАЦИИ КАЖДЫЕ 5 МИНУТ */
 setInterval(async () => {
     const ALL_PAYMENTS = await Payments.findAll({where: {type: 'QR'}})
-    new SberStatus(ALL_PAYMENTS).qrStatus()
+    new SberStatus(ALL_PAYMENTS).checkQrStatus()
     new SberStatus().CHECK_FIKSALIZATION(ALL_PAYMENTS)
-}, 5000)
+}, 60000)
 
 module.exports = SberStatus

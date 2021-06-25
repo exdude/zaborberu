@@ -57,13 +57,13 @@ class SberBank {
                 qrOrderId: result.order_id ? result.order_id : null,
                 rq_uid: result.rq_uid ? result.rq_uid : null,
                 url: result.formUrl ? result.formUrl : result.order_form_url,
-                status: result.order_state === "CREATED" ? "Создан" : "",
+                status: result.order_state,
                 type: this.type,
                 rq_tm: result.rq_tm
             }
     
             payments.create(data)
-            .then(res => {
+            .then(() => {
                 console.log(`Payment sended into DB and Mail`)
             })
             .catch(err => {
@@ -154,21 +154,23 @@ class SberBank {
             })
         })
         .then(status => status.json())
-        console.log(result);
+        console.log(result)
         return result
     }
 
     async qrAuth() {
+        const header = {
+            accept: 'application/json',
+            'content-type': 'application/x-www-form-urlencoded',
+            rquid: uuid.v4().replace(/-/g, ''),
+            authorization: `Basic ${this.base64(process.env.QR_CLIENT_ID+':'+process.env.QR_SECRET)}`,
+            'x-ibm-client-id': process.env.QR_CLIENT_ID
+        }
+        const body = this.urlEncode({ grant_type: 'client_credentials', scope: process.env.QR_SCOPE })
         const result = await fetch(process.env.QR_AUTH, {
             method: 'POST',
-            headers: {
-                accept: 'application/json',
-                'content-type': 'application/x-www-form-urlencoded',
-                rquid: uuid.v4().replace(/-/g, ''),
-                authorization: `Basic ${this.base64(process.env.QR_CLIENT_ID+':'+process.env.QR_SECRET)}`,
-                'x-ibm-client-id': process.env.QR_CLIENT_ID
-            },
-            body: this.urlEncode({ grant_type: 'client_credentials', scope: process.env.QR_SCOPE })
+            headers: header,
+            body: body
         })
         .then(data => data.json())
         if (result.access_token) {
@@ -182,7 +184,6 @@ class SberBank {
                 result: result
             }
         }
-        
     }
 
     async init() {

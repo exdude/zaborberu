@@ -17,8 +17,8 @@ async function start(express, locationData, cookieParser) {
         app.use(locationData)
         app.use(domianRedirect)
         app.use(express.static('./public'))
-        app.use(express.urlencoded({extended: true}))
         app.use(express.json())
+        app.use(express.urlencoded({extended: true}))
         app.use(router)
         app.use((req, res, next) => res.status(404).render('404'))
 

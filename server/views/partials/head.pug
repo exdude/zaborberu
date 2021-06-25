@@ -8,8 +8,10 @@ head
     if !isAbout && !isPay
         script(type="module", src="/assets/js/index.js")
         script(type="module", src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js")
-        
     if isPay
         script(type="module", src="/assets/js/pay.js")
         script(src="/assets/qr/qrcode.js")
+    if isSht
+        script(src="/assets/js/colorCalc.js")
+        link(rel="stylesheet", href="/assets/styles/css/picketFence.css")
     title= title

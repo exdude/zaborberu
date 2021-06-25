@@ -7,19 +7,23 @@ export class PickCity extends Wigets{
         const cities = await fetch('https://neftekamsk.zaborbest.ru/api?city=true').then(d => d.json())
         cities.forEach(x => list.push(x.name))
         const listAlph = list.sort()
+        listAlph.forEach(x => sortCities[x.split('')[0]] = [])
         for (let i = 0; i < listAlph.length; i++) {
-            let f = listAlph[i].split('')[0]
-            sortCities[f] = []
-        }
-        listAlph.sort((a, b) => {
-            let f = a.split('')[0]
-            let s = b.split('')[0]
-            if ((f === s) && !(a === b)) {
-                sortCities[f].push(a)
+            let z = listAlph[i]
+            let x = z.split('')[0]
+            if (sortCities[x].indexOf(z) === -1) {
+                sortCities[x].push(z)
             }
-        })
+        }
+
+        for (let key in sortCities) {
+            sortCities[key].reverse()
+        }
+
         return sortCities
     }
+
+    
 
     async createList() {
         const list = await this.getCityList()
