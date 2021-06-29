@@ -95,8 +95,6 @@ class SberStatus {
                         }
                     }
                 }
-                console.log(x);
-                console.log(payment);
                 i++
                 if (i === x) clearInterval(intervalID)
                 
