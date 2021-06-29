@@ -147,7 +147,7 @@ class SberBank {
                 "position_description": this.adventure.address
                 }
             ],
-            "id_qr": "4000019363",
+            "id_qr": process.env.QR_ID,
             "order_sum": Number(this.data.amount),
             "currency": "643",
             "description": this.adventure.address
