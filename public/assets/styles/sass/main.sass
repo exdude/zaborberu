@@ -37,11 +37,33 @@ $main-shdw: rgba(0, 0, 0, 0.2)
     width: 100%
     height: 100%
     background: #000000d7
-    display: flex
+    display: none
     justify-content: center
     align-items: center
     z-index: 10001
     cursor: pointer
+    &-bg.close-popup__box
+        padding: 80px 90px
+        background: url("/assets/img/pop-bg.png") no-repeat
+        background-size: cover
+        form
+            padding: 20px
+            background: rgba(255, 255, 255, 0.9)
+            h3
+                color: #818181
+                span
+                    color: #0fbc3f
+            hr
+                width: 80px
+                border: 1px solid #7FA4EB
+            p
+                font-size: 1.2em
+                width: 350px
+                text-align: center
+                span
+                    font-weight: 800
+                    font-size: 1.5em
+                    color: #0fbc3f
     &-bg.box
         display: flex
         flex-direction: column
@@ -55,12 +77,27 @@ $main-shdw: rgba(0, 0, 0, 0.2)
             @media screen and ( max-width: 1920px )
                 width: 100%
                 max-height: 80vh
-
         h3
             font-size: 1.3em
             font-weight: normal
             max-width: 500px
             text-align: center
+        .citieslist
+            display: flex
+            flex-wrap: wrap
+            @media screen and ( max-width: $main-scale )
+                display: flex
+                max-height: 300px
+                overflow-x: hidden
+            .citieslist-list
+                ul
+                    max-height: 300px
+                    overflow-x: hidden
+                    min-width: 70px
+
+                ul > a > li
+                    font-size: .8em
+    &-bg
         .modal-bg__close
             display: flex
             justify-content: flex-end
@@ -75,22 +112,7 @@ $main-shdw: rgba(0, 0, 0, 0.2)
                     cursor: pointer
                     transform: rotate(180deg)
                     color: #000
-        .citieslist
-            display: flex
-            flex-wrap: wrap
-            @media screen and ( max-width: $main-scale )
-                display: flex
-                max-height: 300px
-                overflow-x: hidden
-
-            .citieslist-list
-                ul
-                    max-height: 300px
-                    overflow-x: hidden
-                    min-width: 70px
-
-                ul > a > li
-                    font-size: .8em
+    
 
 
 @mixin sbtn($widthm, $gap, $color: #00000000, $h: true)

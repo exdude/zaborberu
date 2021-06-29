@@ -19,7 +19,6 @@ class Controllers {
     bitrix(req, res) {
         const b = require('./bitrix/index')
         const d = req.body
-        console.log(d);
         new b({
             title: d.title,
             name: d.name,

@@ -34,11 +34,33 @@
   width: 100%;
   height: 100%;
   background: #000000d7;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 10001;
   cursor: pointer; }
+  .modal-bg.close-popup__box {
+    padding: 80px 90px;
+    background: url("/assets/img/pop-bg.png") no-repeat;
+    background-size: cover; }
+    .modal-bg.close-popup__box form {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9); }
+      .modal-bg.close-popup__box form h3 {
+        color: #818181; }
+        .modal-bg.close-popup__box form h3 span {
+          color: #0fbc3f; }
+      .modal-bg.close-popup__box form hr {
+        width: 80px;
+        border: 1px solid #7FA4EB; }
+      .modal-bg.close-popup__box form p {
+        font-size: 1.2em;
+        width: 350px;
+        text-align: center; }
+        .modal-bg.close-popup__box form p span {
+          font-weight: 800;
+          font-size: 1.5em;
+          color: #0fbc3f; }
   .modal-bg.box {
     display: flex;
     flex-direction: column;
@@ -57,20 +79,6 @@
       font-weight: normal;
       max-width: 500px;
       text-align: center; }
-    .modal-bg.box .modal-bg__close {
-      display: flex;
-      justify-content: flex-end; }
-      .modal-bg.box .modal-bg__close button {
-        float: right;
-        font-size: 2em;
-        border: none;
-        background: none;
-        color: #2b2b2b;
-        transition: .5s; }
-        .modal-bg.box .modal-bg__close button:hover {
-          cursor: pointer;
-          transform: rotate(180deg);
-          color: #000; }
     .modal-bg.box .citieslist {
       display: flex;
       flex-wrap: wrap; }
@@ -85,6 +93,20 @@
         min-width: 70px; }
       .modal-bg.box .citieslist .citieslist-list ul > a > li {
         font-size: .8em; }
+  .modal-bg .modal-bg__close {
+    display: flex;
+    justify-content: flex-end; }
+    .modal-bg .modal-bg__close button {
+      float: right;
+      font-size: 2em;
+      border: none;
+      background: none;
+      color: #2b2b2b;
+      transition: .5s; }
+      .modal-bg .modal-bg__close button:hover {
+        cursor: pointer;
+        transform: rotate(180deg);
+        color: #000; }
 
 * {
   margin: 0;

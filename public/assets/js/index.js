@@ -55,5 +55,6 @@ document.addEventListener('DOMContentLoaded', e => {
     
         //PickCity
         new PickCity().init()
-    
+        
+        
 })

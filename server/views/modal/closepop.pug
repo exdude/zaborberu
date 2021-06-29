@@ -1,0 +1,14 @@
+.modal.close-popup
+    .modal-bg.close-popup__box
+        div(class="modal-bg__close")
+            button(class="close") X
+        form(action="/bitrix", method="post", class="col gap mid")
+            h3 Уже уходите? 
+                span Не торопитесь!
+            hr
+            p Оставьте заявку прямо сейчас и получите скидку до 
+                span 25% 
+                
+            input(type="text", name="title", value="Заявка при закрытие сайта с сайта zaborberu.ru", hidden)
+            input(type="text", placeholder="Номер Вашего телефона", name="phone", data-mask="+7 (___)-___-__-__" required)
+            input(type="submit", value="Оставить заявку", class="btn")

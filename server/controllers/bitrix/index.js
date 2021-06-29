@@ -52,7 +52,6 @@ class Bitrix {
     }
 
     comments(json, title, value) {
-        console.log(`Commentary`);
         const id = json.result
         const obj = {
             fields:

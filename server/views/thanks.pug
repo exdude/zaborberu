@@ -2,6 +2,6 @@ extends layout.pug
 block content
     .mid.col.gap(style="height: 75vh;")
         h1 Спасибо за вашу заявку 
-            span=name + '!'
+            span=name !== "undefined"?name + '!': "!"
         a(href="/")
             button.btn Перейти на главную 
