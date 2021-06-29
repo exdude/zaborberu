@@ -35,7 +35,7 @@ block content
                         th=item.status === "CREATED" ? "Создан" : item.status === "PAID" ? "Оплачен" : "Не оплачен"
                         th=item.FZ
                         th=item.FZ_ID
-                        th=item.countpayment
+                        th=item.countpayment === "Время оплаты вышло"? item.countpayment : 30 - item.countpayment
                         th
                             button.btn(data-id=item.id, data-type='edit') Изменить 
                         th

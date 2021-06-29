@@ -95,8 +95,11 @@ class SberStatus {
                         }
                     }
                 }
+                console.log(x);
+                console.log(payment);
                 i++
-                if (i >= x) clearInterval(intervalID)
+                if (i === x) clearInterval(intervalID)
+                
             }, 1000)
         })(this.paymentOrders.length)
     }
