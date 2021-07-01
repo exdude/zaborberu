@@ -15,7 +15,7 @@ export class ThreeDeSlider {
         this.positions(elements[this.firstEl], this.firstEl)
         this.styles(elements)
         
-        this.timeOut(7000)
+        this.timeOut(6000000)
     }
 
     positions(el, i) {

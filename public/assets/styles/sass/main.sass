@@ -276,6 +276,22 @@ section, footer
             padding: 20px 0
             gap: 20px
         .logo
+            align-items: center
+            gap: 10px
+            &-type
+                display: flex
+                flex-direction: column
+                gap: 5px
+                @media screen and ( max-width: $main-scale )
+                    display: none
+                p
+                    font-size: .8em
+                    text-align: right
+            &-title > p
+                font-size: .8em
+            &-title > span
+                font-weight: 600
+                font-size: 1.2em
             @media screen and ( max-width: $main-scale )
                 display: none
         .content-phones
@@ -761,6 +777,23 @@ footer
             flex-direction: column
             padding: 20px 0
             gap: 20px
+        .logo
+            align-items: center
+            gap: 10px
+            &-type
+                display: flex
+                flex-direction: column
+                gap: 5px
+                @media screen and ( max-width: $main-scale )
+                    display: none
+                p
+                    font-size: .8em
+                    text-align: right
+            &-title > p
+                font-size: .8em
+            &-title > span
+                font-weight: 600
+                font-size: 1.2em
         .content-phones
             display: flex
             i
