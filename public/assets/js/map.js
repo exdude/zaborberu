@@ -33,13 +33,12 @@ function cookies() {
             result[x[0]] = JSON.parse(x[1])
         } else result[x[0]] = x[1]
     })
+    console.log(result);
     return result
 }
 setTimeout(() => {
     try {
         let data = cookies()['data']
-        console.log(data);
-        console.log(data.coord.split(','));
         fetch('/map')
             .then(response => response.json())
             .then((dataRows) => {
