@@ -37,6 +37,7 @@ function cookies() {
 setTimeout(() => {
     try {
         let data = cookies()['data']
+        console.log(data.coord.split(','));
         fetch('/map')
             .then(response => response.json())
             .then((dataRows) => {
