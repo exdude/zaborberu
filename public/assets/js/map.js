@@ -25,18 +25,20 @@ function cookies() {
     let mArr = []
     let result = {}
     let cook = decodeURIComponent(document.cookie)
-    console.log(cook);
+    let name = ''
     let arr = cook.split(';') 
     arr.forEach(x => mArr.push(x.split('=')))
     mArr.forEach(x => {
-        if (x[0].indexOf("data") > -1) result[x[0]] = JSON.parse(x[1])
+        if (x[0].indexOf("data") > -1) {
+            name = x[0]
+            result[x[0]] = JSON.parse(x[1])
+        }
     })
-    console.log(result);
-    return result
+    return result[name]
 }
 setTimeout(() => {
     try {
-        let data = cookies()['data']
+        let data = cookies()
         fetch('/map')
             .then(response => response.json())
             .then((dataRows) => {
