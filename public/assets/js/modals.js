@@ -7,7 +7,7 @@ export let modals = (ff) => {
                 <input value="${location.pathname === ("/eu" || "/eu/") ? "Заявка еврожалюзи с сайта zaborberu.ru" : "Заявка штакетники с сайта zaborberu.ru"}" name="title" hidden>
                 <input type="text" placeholder="Ваше имя" name="name" required>
                 <input type="text" placeholder="Номер Вашего телефона" name="phone" required>
-                <input hidden name="city" value="${cookies().data.name}">
+                <input hidden name="city" value="${cookies().name}">
                 <label class="row mid gap-m">
                     <input type="checkbox" name="delivery" value="true">
                     <span>По возможности использовать льготную доставку</span>
@@ -25,7 +25,7 @@ export let modals = (ff) => {
                 <input value="Получить прайс-лист на месенджер с zaborberu.ru" name="title" hidden>
                 <input type="text" placeholder="Ваше имя" name="name" required>
                 <input type="text" placeholder="Номер Вашего телефона" name="phone" required>
-                <input hidden name="city" value="${cookies().data.name}">
+                <input hidden name="city" value="${cookies().name}">
                 <span> Выберите мессенджер: </span>
                 <div class="row gap">
                     <label class="row mid gap-m">
@@ -76,12 +76,14 @@ function cookies() {
     let mArr = []
     let result = {}
     let cook = decodeURIComponent(document.cookie)
+    let name = ''
     let arr = cook.split(';') 
     arr.forEach(x => mArr.push(x.split('=')))
     mArr.forEach(x => {
-        if (x[0] === 'data') {
+        if (x[0].indexOf("data") > -1) {
+            name = x[0]
             result[x[0]] = JSON.parse(x[1])
-        } else result[x[0]] = x[1]
+        }
     })
-    return result
+    return result[name]
 }
