@@ -147,7 +147,7 @@ block content
                         img(src="/assets/img/arrow.png")
                 .slider-body
                     each item in projects
-                        .slide(style="background: url('/assets/img/uploads/" + item.img + "') no-repeat; background-size: cover;")
+                        .slide(style="background: url('/assets/img/uploads/" + item.img + "') no-repeat; background-size: cover;" data-open="/assets/img/uploads/" + item.img)
                             .slide-info
                                 ul
                                     li

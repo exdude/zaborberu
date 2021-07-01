@@ -145,7 +145,7 @@ export class Wigets {
     }
 
     openImgs() {
-        const a = document.querySelectorAll('a')
+        const a = document.querySelectorAll('a, div')
         a.forEach(x => {
             if (x.dataset['open']) {
                 x.addEventListener('click', () => {
