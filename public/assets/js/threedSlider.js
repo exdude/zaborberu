@@ -41,6 +41,7 @@ export class ThreeDeSlider {
     }
 
     timeOut(l) {
+        console.log(`Hey`);
         (function(i, that) {
             const elements = that.el.children
             setTimeout(() => {
