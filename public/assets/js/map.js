@@ -31,6 +31,7 @@ function cookies() {
     mArr.forEach(x => {
         if (x[0].indexOf("data") > -1) result[x[0]] = JSON.parse(x[1])
     })
+    console.log(result);
     return result
 }
 setTimeout(() => {
