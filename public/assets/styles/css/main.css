@@ -72,7 +72,7 @@
     max-width: 80vw; }
     @media screen and (max-width: 1920px) {
       .modal-bg.box img {
-        width: 100%;
+        width: auto;
         max-height: 80vh; } }
     .modal-bg.box h3 {
       font-size: 1.3em;
@@ -866,6 +866,81 @@ footer .contain {
       gap: 15px;
       padding: 15px;
       box-shadow: 0px 0px 40px #0000000c; }
+
+.team {
+  background: #f8f8f8; }
+  .team h3 {
+    font-size: 3em;
+    padding: 50px 0;
+    text-align: center; }
+  .team-contain {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 0 100px; }
+    @media screen and (max-width: 1280px) {
+      .team-contain {
+        flex-direction: column; } }
+  @media screen and (max-width: 1280px) {
+    .team-all {
+      flex-direction: column; } }
+  .team-block {
+    padding: 20px;
+    background: white;
+    background: linear-gradient(180deg, white 0%, white 46%, white 46%, #f6f6f6 62%, #eeeeee 100%);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    cursor: pointer; }
+    .team-block:hover {
+      transition: .5s;
+      transform: translateY(-20px); }
+    .team-block__avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-size: cover;
+      overflow: hidden; }
+      .team-block__avatar img {
+        width: 100%;
+        height: 200%; }
+    .team-block__name {
+      font-weight: 600;
+      font-size: 1.2em; }
+    .team-block__name, .team-block__position {
+      text-align: center; }
+
+.sertificats {
+  margin: 0 0 100px 0;
+  background: #ffffff; }
+  .sertificats h3 {
+    font-size: 3em;
+    padding: 50px 0;
+    text-align: center; }
+  .sertificats-contain {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 0 100px; }
+    @media screen and (max-width: 1280px) {
+      .sertificats-contain {
+        flex-direction: column; } }
+  @media screen and (max-width: 1280px) {
+    .sertificats-all {
+      flex-direction: column; } }
+  .sertificats-block {
+    padding: 20px;
+    background: white;
+    background: linear-gradient(180deg, white 0%, white 46%, white 46%, #f6f6f6 62%, #eeeeee 100%);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    cursor: pointer; }
+    .sertificats-block:hover {
+      transition: .5s;
+      transform: translateY(-20px); }
+    .sertificats-block img {
+      max-width: 300px; }
 
 .pay .sp {
   width: 8px;
