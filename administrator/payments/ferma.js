@@ -161,7 +161,7 @@ class SberStatus {
                                         "Price": CURRENT_AMOUNT,
                                         "Quantity": QUANTITY,
                                         "Amount": CURRENT_AMOUNT * QUANTITY,
-                                        "Vat": "CalculatedVat20120",
+                                        "Vat": "VatNo",
                                         "MarkingCodeStructured": null,
                                         "MarkingCode": null,
                                         "PaymentMethod": 4,
