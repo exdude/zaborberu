@@ -108,6 +108,20 @@ block content
                                     button.btn(data-order="true") ЗАКАЗАТЬ С ДОСТАВКОЙ
     if isSht
         include ./partials/calc.pug
+    if isSht
+        section.instruction
+            .instruction.contain
+                h2 ПРОСМОТРЕТЬ И СКАЧАТЬ ИНСТРУКЦИЮ
+                .buttons.row.gap-m
+                    .btn(data-vid="/assets/img/instruction/Варианты выполненных проектов из штакетника.mkv") ПРОСМОТРЕТЬ ВЫПОЛНЕНЫЕ ПРОЕКТЫ
+                    .btn(data-open="/assets/img/instruction/Инструкция по монтажу забора из штакетника.jpg") ПРОСМОТРЕТЬ ИНСТРУКЦИЮ ПО МОНТАЖУ
+    if !isSht
+        section.instruction
+            .instruction.contain
+                h2 ПРОСМОТРЕТЬ И СКАЧАТЬ ИНСТРУКЦИЮ
+                .buttons.row.gap-m
+                    .btn(data-vid="/assets/img/instruction/Варианты выполненных проектов забора жалюзи.mp4") ПРОСМОТРЕТЬ ВЫПОЛНЕНЫЕ ПРОЕКТЫ
+                    .btn(data-vid="/assets/img/instruction/Инструкция по сборке секции забора жалюзи.mp4") ПРОСМОТРЕТЬ ИНСТРУКЦИЮ ПО СБОРКЕ
     section.work
         .work.contain
             h2 КАК МЫ РАБОТАЕМ

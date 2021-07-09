@@ -155,4 +155,15 @@ export class Wigets {
             }
         })
     }
+    openVid() {
+        const a = document.querySelectorAll('a, div')
+        a.forEach(x => {
+            if (x.dataset['vid']) {
+                x.addEventListener('click', () => {
+                    document.body.style.overflowY = "hidden"
+                    document.body.append(this.createModal('', `<video  controls="controls" src="${x.dataset['vid']}"> `))
+                })
+            }
+        })
+    }
 }

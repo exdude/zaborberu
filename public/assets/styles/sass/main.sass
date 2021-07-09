@@ -576,6 +576,26 @@ section, footer
                                     max-width: 220px
 
 
+.instruction
+    background: url("/assets/img/bg.jpg") no-repeat
+    background-size: cover
+    &.contain
+        background: #000000ab
+        padding: 50px 0
+        @media screen and ( max-width: $main-scale )
+            padding: 20px 0 0 0
+        h2
+            color: #fff
+        .buttons
+            justify-content: center
+            padding-bottom: 20px
+            padding-top: 50px
+            @media screen and ( max-width: $main-scale )
+                flex-direction: column
+            .btn
+                margin: 0 20px
+                text-align: center
+
 .work
     background: #e4e4e4
     &.contain
@@ -626,22 +646,16 @@ section, footer
         @media screen and ( max-width: $main-scale )
             padding: 20px 0
         .slider
-            margin-top: 60px
             .row.btns
+                margin: 20px 0
                 @media screen and ( max-width: $main-scale )
                     justify-content: space-around
-                    .next
-                        margin-left: 80% !important
-                    .back
-                        margin-left: -80% !important
                 button
-                    margin-top: 300px
                     background: #ffffff00
-                    @include sbtn($main-scale, 20px, #f5f5f5, true)
+                    @media screen and ( min-width: $main-scale )
+                        @include sbtn($main-scale, 20px, #f5f5f5, true)
                     @media screen and ( max-width: $main-scale )
                         display: block !important
-                        position: absolute
-                        margin-top: 280px
                         @include sbtn($main-scale, 20px, #ffffff00, false)
                         
             .slider-body

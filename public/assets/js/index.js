@@ -47,8 +47,9 @@ document.addEventListener('DOMContentLoaded', e => {
         //faq
         ff.faq(document.querySelectorAll('.collapsible'))
     
-        //img modals
+        //img,vid modals
         ff.openImgs()
+        ff.openVid()
     
         //modals
         modals(ff)
