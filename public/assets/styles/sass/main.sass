@@ -108,6 +108,8 @@ $main-shdw: rgba(0, 0, 0, 0.2)
                 background: none
                 color: #2b2b2b
                 transition: .5s
+                @media screen and ( max-width: $main-scale )
+                    margin-top: 50px
                 &:hover
                     cursor: pointer
                     transform: rotate(180deg)
