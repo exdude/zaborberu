@@ -103,9 +103,6 @@
       background: none;
       color: #2b2b2b;
       transition: .5s; }
-      @media screen and (max-width: 1280px) {
-        .modal-bg .modal-bg__close button {
-          margin-top: 50px; } }
       .modal-bg .modal-bg__close button:hover {
         cursor: pointer;
         transform: rotate(180deg);

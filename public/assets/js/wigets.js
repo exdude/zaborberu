@@ -161,7 +161,7 @@ export class Wigets {
             if (x.dataset['vid']) {
                 x.addEventListener('click', () => {
                     document.body.style.overflowY = "hidden"
-                    document.body.append(this.createModal('', `<video  controls="controls" src="${x.dataset['vid']}"> `))
+                    document.body.append(this.createModal('', `<video ${window.innerWidth < 500 ? 'width="280" height="150"' : ''} controls="controls" src="${x.dataset['vid']}"> `))
                 })
             }
         })
