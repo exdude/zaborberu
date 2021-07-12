@@ -73,7 +73,8 @@
     @media screen and (max-width: 1920px) {
       .modal-bg.box img {
         width: auto;
-        max-height: 80vh; } }
+        height: auto;
+        max-height: 50vh; } }
     .modal-bg.box h3 {
       font-size: 1.3em;
       font-weight: normal;
