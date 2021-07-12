@@ -154,11 +154,6 @@ block content
         .projects.contain
             h2 РЕАЛЬНЫЕ ПРИМЕРЫ ПРОЕКТОВ
             .slider
-                .row.btns
-                    button.back
-                        img(src="/assets/img/arrow.png")
-                    button.next
-                        img(src="/assets/img/arrow.png")
                 .slider-body
                     each item in projects
                         .slide(style="background: url('/assets/img/uploads/" + item.img + "') no-repeat; background-size: cover;" data-open="/assets/img/uploads/" + item.img)
@@ -182,6 +177,11 @@ block content
                                     li
                                         p Тип профиля:
                                         span=item.model
+                .row.btns
+                    button.back
+                        img(src="/assets/img/arrow.png")
+                    button.next
+                        img(src="/assets/img/arrow.png")
     section.faq
         .faq.contain
             .grass.first

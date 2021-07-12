@@ -724,9 +724,8 @@ section, footer {
         margin: 20px; }
         @media screen and (max-width: 1280px) {
           .projects.contain .slider .slide-info {
-            padding: 5px;
-            margin-bottom: 25px;
-            position: absolute; } }
+            position: absolute;
+            padding: 5px; } }
         @media screen and (max-width: 1280px) {
           .projects.contain .slider .slide-info ul {
             font-size: 0.6em; } }
