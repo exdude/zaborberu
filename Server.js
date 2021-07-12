@@ -25,7 +25,7 @@ async function start(express, locationData, cookieParser) {
 
 
         if (process.env.PRODUCT === "true") http(app).listen(process.env.S_PORT, config.HOST,  () => console.log(`Https Server listening on port ${config.HOST}:${process.env.S_PORT}`))
-        app.listen(config.PORT, config.HOST,  () => console.log(`Server listening on port ${config.HOST}:${config.PORT}`))
+        app.listen(config.PORT, config.HOST,  () => console.log(`Server listening on port http://${config.HOST}:${config.PORT}/`))
 
     } catch (err) {
         console.log(`Server stoped with error: ${err}`)
