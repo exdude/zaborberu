@@ -9,7 +9,27 @@ const smtpAuth = nodemailer.createTransport(smtpTransport({
     }
 }))
 
-module.exports = (title, body) => {
+module.exports = (title, body, any) => {
+    if (any) {
+        let string = ''
+        for (let key in any) {
+            string += `<p><b>${key}:</b> ${any[key]}</p>`
+        }
+
+        smtpAuth.sendMail({
+            from: `${title} с zaborberu.ru <${process.env.MAIL_FROM}>`,
+            to: process.env.MAIL_TO,
+            subject: `${title} с zaborberu.ru`,
+            html:  `
+                <b>${title}</b>
+                ${string}
+            `
+        }, (error, info) => {
+            if (error) throw error
+        })
+    }
+
+
     let form = ''
     for (let key in body) {
         form += `<span><b>${key}</b>:<p>${body[key]}</p></span><br>`

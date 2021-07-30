@@ -36,6 +36,19 @@ class Bitrix {
     }
 
     send() {
+        
+        sendMail(this.title, {
+            "Имя": this.name,
+            "Телефон": this.phone,
+            "Город": this.city ? this.city : "Город не указан",
+            "Доставка": this.delivery ? this.delivery : "Доставка не указана",
+            "Мессенджер": this.messenger ? this.messenger : "Мессенджер не указан",
+            "Код цвета": this.code_color ? this.code_color : "Код цвета не указан",
+            "Цвет": this.colors ? this.colors : "Цвет не указан",
+            "Материал": this.material ? this.material : "Материал не указан",
+            "Ширина": this.width ? this.width : "Ширина не указана",
+        })
+
         fetch(process.env.BITRIX_URL, {
             method: 'POST',
             headers: {
@@ -45,17 +58,7 @@ class Bitrix {
         })
         .then(data => data.json())
         .then(json => {
-            sendMail(this.title, {
-                "Имя": this.name,
-                "Телефон": this.phone,
-                "Город": this.city ? this.city : "Город не указан",
-                "Доставка": this.delivery ? this.delivery : "Доставка не указана",
-                "Мессенджер": this.messenger ? this.messenger : "Мессенджер не указан",
-                "Код цвета": this.code_color ? this.code_color : "Код цвета не указан",
-                "Цвет": this.colors ? this.colors : "Цвет не указан",
-                "Материал": this.material ? this.material : "Материал не указан",
-                "Ширина": this.width ? this.width : "Ширина не указана",
-            })
+            
             if (this.delivery) this.comments(json, 'По возможности использовать льготную доставку: ', this.delivery ? 'Да' : 'Нет')
             if (this.messenger) this.comments(json, 'Отправить прайс по мессенджеру: ', this.messenger)
             if (this.colors) this.comments(json, `Город: ${this.city}, Выбранные свойства: `, `Материал: ${this.material}, цвет: ${this.code_color}, ширина: ${this.width}`)
