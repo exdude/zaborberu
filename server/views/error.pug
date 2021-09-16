@@ -1,0 +1,7 @@
+extends layout.pug
+block content
+    .mid.col.gap(style="height: 75vh;")
+        h1 Ошибка, попробуйте снова!
+            span=errors !== "undefined" ?errors + '!': "!"
+        a(href="/")
+            button.btn Перейти на главную 

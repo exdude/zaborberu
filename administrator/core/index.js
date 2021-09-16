@@ -18,7 +18,7 @@ class Core {
     init() {
         try {
             this.app.use(this.express.static(__dirname + '/../public'))
-            this.app.use(this.express.json())
+            this.app.use(this.express.json({limit: '50mb'}))
             this.app.use(this.express.urlencoded({extended: false}))
             this.app.use(multer)
             this.app.set('view engine', 'pug')

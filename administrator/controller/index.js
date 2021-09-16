@@ -1,5 +1,6 @@
 const db = require('../db/index')
 const Assorty = db.assorty
+const Action = db.Action
 const AssortyEu = db.assortyeu
 const Projects = db.Projects
 const ProjectsEu = db.ProjectsEu
@@ -63,14 +64,20 @@ class Controllers {
             Offices: true
         })
     }
+    async actionBlock(req, res, next) {
+        res.render('action', {
+            title: 'Панель администратора акция',
+            data: await await Action.findAll().then(result => result[0].dataValues),
+            action: true
+        })
+    }
     async error(req, res, next) {
         res.render('error', {
             title: 'Ошибка сервера'
         })
     }
 
-    api(req, res, next) {
-        console.log(req.body);
+    async api(req, res, next) {
         switch(req.body.ltype) {
             case 'assorty':
                 actions(req, res, Assorty)
@@ -89,6 +96,42 @@ class Controllers {
                 break
             case 'offices':
                 actions(req, res, Offices)
+                break
+
+
+            case 'icon':
+                Action.update({ icon: req.body.file }, {where: {id: 1}})
+                .then(result => {
+                    res.status(200)
+                    res.send({
+                        status: true,
+                        result: result
+                    })
+                })
+                .catch(err => {
+                    res.status(400)
+                    res.send({
+                        status: false,
+                        result: err
+                    })
+                })
+                break
+            case 'pdf':
+                Action.update({ base: req.body.file }, {where: {id: 1}})
+                .then(result => {
+                    res.status(200)
+                    res.send({
+                        status: true,
+                        result: result
+                    })
+                })
+                .catch(err => {
+                    res.status(400)
+                    res.send({
+                        status: false,
+                        result: err
+                    })
+                })
                 break
         }
     }

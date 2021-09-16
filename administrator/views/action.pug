@@ -1,0 +1,21 @@
+extends layout.pug
+block content
+    section
+        section.block.gap.col
+            h2 Акция штакет
+            
+            .action
+                .action__name
+                    b Имя
+                    p=data.name
+                .action__icon
+                    b Иконка
+                    img(src=data.icon, width="100")
+
+                    .btn(data-edit="icon") Изменить
+                .action__pdf
+                    b Файл
+                    embed(src=data.base width="500" height="375" type="application/pdf")
+
+                    .btn(data-edit="pdf") Изменить
+        script(type="module", src="./js/actions.js")

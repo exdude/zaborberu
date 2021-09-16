@@ -16,6 +16,7 @@ module.exports = async function (req, res) {
     return {
         index: {
             title: 'Продажа металлического штакетника с доставкой по всей России и странам Таможенного Союза',
+            action: (await qy('SELECT * FROM `action`'))[0][0],
             data: mainData,
             messengers: (await qy('SELECT * FROM `about`'))[0][0].messengers,
             isSht: true

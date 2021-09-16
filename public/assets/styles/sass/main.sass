@@ -4,6 +4,33 @@ $card-width: 780px
 $main-color: #4285F4
 $main-shdw: rgba(0, 0, 0, 0.2)
 
+.action
+    z-index: 10001
+    position: fixed
+    right: 40px
+    margin-top: 40px
+    border-radius: 50%
+    width: 200px
+    height: 200px
+    cursor: pointer
+    background: #ccc
+    box-shadow: 0 0 25px #0000002a
+    animation: action 2s infinite
+    top: 120px
+    @media screen and ( max-width: $main-scale )
+        display: none
+
+@keyframes action
+    0%
+        transform: rotate(0deg)
+    50%
+        transform: rotate(60deg)
+    70%
+        transform: rotate(-30deg)
+    100%
+        transform: rotate(0deg)
+        
+
 .error
     background: #ffa7a7
     border-radius: 5px
@@ -385,7 +412,7 @@ section, footer
                 content: ""
                 border: solid transparent
                 position: absolute;   
-                left: 8px;   
+                left: -10px;   
                 bottom: 100%
                 border-bottom-color: #fff
                 border-width: 9px
@@ -716,7 +743,7 @@ section, footer
                 margin-top: 20px
                 position: absolute
                 margin-left: 1110px
-                @media screen and ( max-width: $main-scale )
+                @media screen and ( max-width: 1850px )
                     display: none
                     
             img:nth-child(odd)

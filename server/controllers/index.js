@@ -15,11 +15,15 @@ class Controllers {
     async thanks(req, res, next) {
         res.render('thanks', (await opt(req, res)).thanks)
     }
+    async errors(req, res, next) {
+        res.render('error', (await opt(req, res)).errors)
+    }
 
     bitrix(req, res) {
-        const b = require('./bitrix/index')
         const d = req.body
-        new b({
+        const bitrix = require('./bitrix/index')
+        
+        const lead = new bitrix({
             title: d.title,
             name: d.name,
             phone: d.phone,
@@ -29,9 +33,13 @@ class Controllers {
             material: d.material,
             code_color: d.code_color,
             width: d.width,
-            city: d.city,
-        }).send()
+            city: d.city
+        })
+
+        lead.send()
+        
         res.redirect('/thanks?name=' + d.name)
+        
     }
 
     async about(req, res) {

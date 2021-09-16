@@ -13,6 +13,7 @@ rout.get('/error', controller.error)
 rout.get('/api', controller.map)
 rout.get('/offices', controller.offices)
 rout.get('/map', controller.map)
+rout.get('/action', controller.actionBlock)
 rout.post('/api', controller.api)
 
 module.exports = rout

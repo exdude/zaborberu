@@ -6,7 +6,8 @@ const sequelize = new Sequelize(
     process.env.MYSQL_USER,
     process.env.MYSQL_PASS, {
     dialect: 'mysql',
-    host: process.env.MYSQL_HOST
+    host: process.env.MYSQL_HOST,
+    logging: false
 })
 
 const Assorty = require('./models/Assorty')(sequelize)
@@ -16,6 +17,7 @@ const ProjectsEu = require('./models/ProjectsEu')(sequelize)
 const Faq = require('./models/Faq')(sequelize)
 const Payments = require('./models/Payments')(sequelize)
 const Offices = require('./models/Points')(sequelize)
+const Action = require('./models/Action')(sequelize)
 
 module.exports = {
     sequelize : sequelize,
@@ -25,5 +27,6 @@ module.exports = {
     ProjectsEu: ProjectsEu,
     Payments: Payments,
     Offices: Offices,
+    Action: Action,
     Faq: Faq
 }

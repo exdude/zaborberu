@@ -35,7 +35,8 @@ module.exports = (title, body, any) => {
         form += `<span><b>${key}</b>:<p>${body[key]}</p></span><br>`
     }
     let div = `<div style="padding: 20px; border-radius: 10px; box-shadow: 0 0 65px #00000040;">${form}</div>`
-    smtpAuth.sendMail({
+    let flag = false
+    const statusSendMail = smtpAuth.sendMail({
         from: `${title} с zaborberu.ru <${process.env.MAIL_FROM}>`,
         to: process.env.MAIL_TO,
         subject: `${title} с zaborberu.ru`,

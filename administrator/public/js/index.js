@@ -263,3 +263,5 @@ class Admin {
 }
 
 new Admin().init()
+
+export default Admin

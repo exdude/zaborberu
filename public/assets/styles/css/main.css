@@ -1,4 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.action {
+  z-index: 10001;
+  position: fixed;
+  right: 40px;
+  margin-top: 40px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  background: #ccc;
+  box-shadow: 0 0 25px #0000002a;
+  animation: action 2s infinite;
+  top: 120px; }
+  @media screen and (max-width: 1280px) {
+    .action {
+      display: none; } }
+
+@keyframes action {
+  0% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(60deg); }
+  70% {
+    transform: rotate(-30deg); }
+  100% {
+    transform: rotate(0deg); } }
+
 .error {
   background: #ffa7a7;
   border-radius: 5px;
@@ -367,7 +394,7 @@ section, footer {
       content: "";
       border: solid transparent;
       position: absolute;
-      left: 8px;
+      left: -10px;
       bottom: 100%;
       border-bottom-color: #fff;
       border-width: 9px;
@@ -756,7 +783,7 @@ section, footer {
         margin-top: 20px;
         position: absolute;
         margin-left: 1110px; }
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1850px) {
           .faq.contain .faq-attribute img:nth-child(even) {
             display: none; } }
       .faq.contain .faq-attribute img:nth-child(odd) {
